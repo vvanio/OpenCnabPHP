@@ -24,105 +24,143 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP\resources\B748\remessa\cnab400;
 
 use CnabPHP\resources\generico\remessa\cnab400\Generico0;
 use CnabPHP\RemessaAbstract;
 
-class Registro0 extends Generico0 {
+/**
+ */
+class Registro0 extends Generico0
+{
 
+    /**
+     */
     protected $meta = array(
         'identificacao_registro' => array(
             'tamanho' => 1,
             'default' => '0',
             'tipo' => 'int',
-            'required' => true),
-        'id_arquivo_remessa' => array(//fixo 
+            'required' => true
+        ),
+        'id_arquivo_remessa' => array( // fixo
             'tamanho' => 1,
             'default' => '1',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'literal_remessa' => array(
             'tamanho' => 7,
             'default' => 'REMESSA',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'tipo_servico' => array(
             'tamanho' => 2,
             'default' => '01',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'literal_servico' => array(
             'tamanho' => 15,
             'default' => 'COBRANCA',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'codigo_beneficiario' => array(
             'tamanho' => 5,
             'default' => '',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'numero_inscricao' => array(
             'tamanho' => 14,
             'default' => '',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'filler0' => array(
             'tamanho' => 31,
             'default' => ' ',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'codigo_banco' => array(
             'tamanho' => 3,
             'default' => '748',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'nome_banco' => array(
             'tamanho' => 15,
             'default' => 'SICREDI',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'data_gravacao' => array(
             'tamanho' => 8,
             'default' => '', // nao informar a data na instanciação - gerada dinamicamente
             'tipo' => 'dateReverse',
-            'required' => true),
+            'required' => true
+        ),
         'filler1' => array(
             'tamanho' => 8,
             'default' => ' ',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'numero_sequencial_arquivo' => array(
             'tamanho' => 7,
             'default' => '1',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        ),
         'filler2' => array(
             'tamanho' => 273,
             'default' => ' ',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'identificacao_sistema' => array(
             'tamanho' => 4,
             'default' => '2.00',
             'tipo' => 'alfa',
-            'required' => true),
+            'required' => true
+        ),
         'numero_sequencial' => array(
             'tamanho' => 6,
             'default' => '1',
             'tipo' => 'int',
-            'required' => true),
+            'required' => true
+        )
     );
-    
-    public function __construct($data = NULL) {
+
+    /**
+     */
+    public function __construct($data = null)
+    {
         parent::__construct($data);
         RemessaAbstract::$endLine = hex2bin('0D0A');
     }
 
-    public function getFileName() {
-        $codigo_meses = array(1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>'O',11=>'N',12=>'D');
+    /**
+     */
+    public function getFileName()
+    {
+        $codigo_meses = array(
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7,
+            8 => 8,
+            9 => 9,
+            10 => 'O',
+            11 => 'N',
+            12 => 'D'
+        );
         return $this->entryData['codigo_beneficiario'] . $codigo_meses[date('n')] . date('d') . '.crm';
     }
-
 }

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * CnabPHP - Geração de arquivos de remessa e retorno em PHP
  *
@@ -24,24 +23,28 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP;
 
 use CnabPHP\RegistroAbstract;
 use Exception;
 
-abstract class RegistroRemAbstract extends RegistroAbstract {
+/**
+ */
+abstract class RegistroRemAbstract extends RegistroAbstract
+{
 
     protected $entryData;
 
     /**
      * Método __construct()
      * instancia registro qualquer
+     *
      * @$data = array de dados para o registro
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         if ($data) { // se o ID for informado
-            // carrega o objeto correspondente
+                     // carrega o objeto correspondente
             $this->entryData = $data;
             foreach ($this->meta as $key => $value) {
                 $this->$key = (isset($data[$key])) ? $data[$key] : $this->meta[$key]['default'];
@@ -51,16 +54,20 @@ abstract class RegistroRemAbstract extends RegistroAbstract {
 
     /**
      * Método __set()
-     * executado sempre que uma propriedade for atribu?da.
+     * executado sempre que uma propriedade for atribuída.
      */
-    public function __set($prop, $value) {
+    public function __set($prop, $value)
+    {
         // verifica se existe Método set_<propriedade>
         if (method_exists($this, 'set_' . $prop)) {
             // executa o Método set_<propriedade>
-            call_user_func(array($this, 'set_' . $prop), $value);
+            call_user_func(array(
+                $this,
+                'set_' . $prop
+            ), $value);
         } else {
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
-            if (($value == "" || $value === NULL) && $metaData['default'] != "") {
+            if (($value == "" || $value === null) && $metaData['default'] != "") {
                 $this->data[$prop] = $metaData['default'];
             } else {
                 // atribui o valor da propriedade
@@ -73,11 +80,15 @@ abstract class RegistroRemAbstract extends RegistroAbstract {
      * Método __get()
      * executado sempre que uma propriedade for requerida
      */
-    public function __get($prop) {
+    public function __get($prop)
+    {
         // verifica se existe Método get_<propriedade>
         if (method_exists($this, 'get_' . $prop)) {
             // executa o Método get_<propriedade>
-            return call_user_func(array($this, 'get_' . $prop));
+            return call_user_func(array(
+                $this,
+                'get_' . $prop
+            ));
         } else {
             return $this->___get($prop);
         }
@@ -87,20 +98,21 @@ abstract class RegistroRemAbstract extends RegistroAbstract {
      * Método ___get()
      * metodo auxiliar para ser chamado para dentro de metodo get personalizado
      */
-    public function ___get($prop) {
+    public function ___get($prop)
+    {
         // retorna o valor da propriedade
         if (isset($this->meta[$prop])) {
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
-            $this->data[$prop] = !isset($this->data[$prop]) || $this->data[$prop] == '' ? $metaData['default'] : $this->data[$prop];
-            if ($metaData['required'] == true && ($this->data[$prop] == '' || !isset($this->data[$prop]))) {
+            $this->data[$prop] = ! isset($this->data[$prop]) || $this->data[$prop] == '' ? $metaData['default'] : $this->data[$prop];
+            if ($metaData['required'] == true && ($this->data[$prop] == '' || ! isset($this->data[$prop]))) {
                 if (isset($this->data['nosso_numero'])) {
                     throw new Exception('Campo faltante ou com valor nulo:' . $prop . " Boleto Numero:" . $this->data['nosso_numero']);
                 } else {
                     throw new Exception('Campo faltante ou com valor nulo:' . $prop);
                 }
             }
-            set_error_handler(function ($severity, $message, $file, $line,$errcontext) {
-                throw new \ErrorException(json_encode($errcontext)."->".$message, $severity, $severity, $file, $line);
+            set_error_handler(function ($severity, $message, $file, $line, $errcontext) {
+                throw new \ErrorException(json_encode($errcontext) . "->" . $message, $severity, $severity, $file, $line);
             });
 
             switch ($metaData['tipo']) {
@@ -128,12 +140,15 @@ abstract class RegistroRemAbstract extends RegistroAbstract {
                 default:
                     return null;
             }
+
             restore_error_handler();
         }
     }
 
-    public function getFileName() {
+    /**
+     */
+    public function getFileName()
+    {
         return 'R' . RemessaAbstract::$banco . str_pad($this->entryData['numero_sequencial_arquivo'], 4, '0', STR_PAD_LEFT) . '.rem';
     }
-
 }

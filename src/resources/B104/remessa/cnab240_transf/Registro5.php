@@ -24,72 +24,80 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP\resources\B104\remessa\cnab240_transf;
+
 use CnabPHP\resources\generico\remessa\cnab240\Generico5;
-use CnabPHP\RemessaAbstract;
 use Exception;
 
+/**
+ */
 class Registro5 extends Generico5
 {
-	protected $meta = array(
-		'codigo_banco'=>array(      //01.5
-			'tamanho'=>3,
-			'default'=>'104',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_lote'=>array(       //02.5
-			'tamanho'=>4,
-			'default'=>1,
-			'tipo'=>'int',
-			'required'=>true),
-		'tipo_registro'=>array(     //03.5
-			'tamanho'=>1,
-			'default'=>'5',
-			'tipo'=>'int',
-			'required'=>true),
-		'filler1'=>array(          //04.5
-			'tamanho'=>9,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'qtd_registros'=>array(      //05.5
-			'tamanho'=>6,
-			'default'=>' ',
-			'tipo'=>'int',
-			'required'=>true),
-		'somatorio_valores' => array(//06.5
-			'tamanho' => 16,
-			'default' => '0',
-			'tipo' => 'decimal',
-			'precision' => 2,
-			'required' => true),
-		'somatorio_qtd_moedas'=>array(  //07.5
-			'tamanho'=>13,
-			'default'=>'0',
-			'tipo'=>'decimal',
-			'precision'=>'5',
-			'required'=>true),
-		'aviso_debito'=>array(           //08.5
-			'tamanho'=>6,
-			'default'=>'0',
-			'tipo'=>'int',
-			'required'=>true),
-		
-		'filler2'=>array(        //19.5
-			'tamanho'=>165,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'filler3'=>array(           //10.5
-			'tamanho'=>10,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-	);
 
-	protected function set_somatorio_valores($value)
-    {
-		if(isset(RemessaAbstract::$entryData['somatorio_valores']))
-        	$this->data['somatorio_valores'] = RemessaAbstract::$entryData['somatorio_valores'];
-    }
+    /**
+     */
+    protected $meta = array(
+        'codigo_banco' => array( // 01.5
+            'tamanho' => 3,
+            'default' => '104',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_lote' => array( // 02.5
+            'tamanho' => 4,
+            'default' => 1,
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'tipo_registro' => array( // 03.5
+            'tamanho' => 1,
+            'default' => '5',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler1' => array( // 04.5
+            'tamanho' => 9,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'qtd_registros' => array( // 05.5
+            'tamanho' => 6,
+            'default' => ' ',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'somatorio_valores' => array( // 06.5
+            'tamanho' => 16,
+            'default' => '0',
+            'tipo' => 'decimal',
+            'precision' => 2,
+            'required' => true
+        ),
+        'somatorio_qtd_moedas' => array( // 07.5
+            'tamanho' => 13,
+            'default' => '0',
+            'tipo' => 'decimal',
+            'precision' => '5',
+            'required' => true
+        ),
+        'aviso_debito' => array( // 08.5
+            'tamanho' => 6,
+            'default' => '0',
+            'tipo' => 'int',
+            'required' => true
+        ),
+
+        'filler2' => array( // 19.5
+            'tamanho' => 165,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler3' => array( // 10.5
+            'tamanho' => 10,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        )
+    );
 }
-?>

@@ -28,8 +28,13 @@ namespace CnabPHP\resources\B033\remessa\cnab240;
 use CnabPHP\resources\generico\remessa\cnab240\Generico5;
 use CnabPHP\Exception;
 
+/**
+ */
 class Registro5 extends Generico5
 {
+
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
@@ -66,6 +71,6 @@ class Registro5 extends Generico5
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-        ),
+        )
     );
 }

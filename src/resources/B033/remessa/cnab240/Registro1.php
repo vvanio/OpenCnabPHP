@@ -27,9 +27,13 @@ namespace CnabPHP\resources\B033\remessa\cnab240;
 
 use CnabPHP\resources\generico\remessa\cnab240\Generico1;
 
+/**
+ */
 class Registro1 extends Generico1
 {
 
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
@@ -133,13 +137,13 @@ class Registro1 extends Generico1
             'tipo' => 'alfa',
             'required' => true
         ),
-        'mensagem1' => array(// mensagems 1 e 2 : somente use para mensagens que serao impressas de forma identica em todos os boletos do lote
+        'mensagem1' => array( // mensagems 1 e 2 : somente use para mensagens que serao impressas de forma identica em todos os boletos do lote
             'tamanho' => 40,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'mensagem2' => array(// mensagems 1 e 2 : somente use para mensagens que serao impressas de forma identica em todos os boletos do lote
+        'mensagem2' => array( // mensagems 1 e 2 : somente use para mensagens que serao impressas de forma identica em todos os boletos do lote
             'tamanho' => 40,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -162,6 +166,6 @@ class Registro1 extends Generico1
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-        ),
+        )
     );
 }

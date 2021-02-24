@@ -1,29 +1,65 @@
 <?php
+/*
+ * CnabPHP - Geração de arquivos de remessa e retorno em PHP
+ *
+ * LICENSE: The MIT License (MIT)
+ *
+ * Copyright (C) 2013 Ciatec.net
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this
+ * software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify,
+ * merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies
+ * or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 namespace CnabPHP;
 
 use Exception;
 
+/**
+ */
 abstract class RetornoAbstract
 {
 
-    //public  $hearder; // armazena o objeto registro 0 do arquivo
-    private $children = array(); // armazena os registros filhos da classe remessa
+    // armazena o objeto registro 0 do arquivo
+    // public $hearder;
 
-    public static $banco; // sera atribuido o nome do banco que tambem é o nome da pasta que contem os layouts
+    // armazena os registros filhos da classe remessa
+    private $children = array();
 
-    public static $layout; // recebera o nome do layout na instacia?ao
+    // sera atribuido o nome do banco que tambem é o nome da pasta que contem os layouts
+    public static $banco;
 
-    public static $loteCounter = 1; // contador de lotes
+    // recebera o nome do layout na instanciação
+    public static $layout;
 
-    public static $lines; // mantem os dados passados em $data na instanciação
+    // contador de lotes
+    public static $loteCounter = 1;
 
+    // mantem os dados passados em $data na instanciação
+    public static $lines;
+
+    // contador de linhas
     public static $linesCounter = 0;
 
-    //public static $retorno = array(); // durante a geração do txt de retorno se tornara um array com as linhas do arquvio
+    // durante a geração do txt de retorno se tornara um array com as linhas do arquvio
+    // public static $retorno = array();
 
     /**
      * método __construct()
      * Recebe os parametros
+     *
      * @$banco = nome do banco no momento so Caixa
      * @$layout = nome do layout no momento so Cnab240_SIGCB
      * @$data = um array contendo os dados nessesarios para o arquvio
@@ -69,6 +105,7 @@ abstract class RetornoAbstract
     /**
      * Método changeLayout()
      * Recebe os parametros
+     *
      * @$newLayout = altera o layout do lote , servira para enviar lotes de layouts diferentes no mesmo arquvio //(ALERTA) nao testado
      */
     public function changeLayout($newLayout)
@@ -79,6 +116,7 @@ abstract class RetornoAbstract
     /**
      * Método getLote()
      * Metodo estático para pegar o objeto do lote
+     *
      * @$index = o indice do lote , normalmente 1
      */
     public function getRegistros($lote = 1)
@@ -99,6 +137,7 @@ abstract class RetornoAbstract
 
     /**
      * Retorna um filho específico
+     *
      * @param int $index
      * @return
      */
@@ -110,6 +149,7 @@ abstract class RetornoAbstract
 
     /**
      * Retorna o a versão do layout
+     *
      * @return string
      */
     public function getLayout()
@@ -117,8 +157,10 @@ abstract class RetornoAbstract
         $arquivo = $this->children[0];
         return (self::$layout != 'L400') ? $arquivo->versao_layout : 'L400';
     }
+
     /**
      * Retorna o a versão do layout
+     *
      * @return string
      */
     public function getRegistrosRaiz()

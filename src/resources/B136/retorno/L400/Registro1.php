@@ -28,8 +28,11 @@ namespace CnabPHP\resources\B136\retorno\L400;
 use CnabPHP\resources\generico\retorno\L400\Generico1;
 use CnabPHP\RetornoAbstract;
 
+/**
+ */
 class Registro1 extends Generico1
 {
+
     public $trailler;
 
     /**
@@ -42,8 +45,9 @@ class Registro1 extends Generico1
         '04' => 'Sustado Judicial (Título protestado sustado judicialmente)',
         '06' => 'Liquidação Normal',
         '07' => 'Liquidação em Condicional (Título liquidado em cartório com cheque do próprio devedor)',
-        '08' => 'Sustado Definitivo (Título protestado sustado judicialmente)',
+        '08' => 'Sustado Definitivo (Título protestado sustado judicialmente)'
     );
+
     /**
      * Posição 319 a 326 Códigos de Complemento do Movimento:
      */
@@ -183,7 +187,7 @@ class Registro1 extends Generico1
         '167' => 'Valor divergente entre título e comprovante.',
         '168' => 'Condomínio não pode ser protestado para fins falimentares.',
         '169' => 'Vedada a intimação por edital para protesto falimentar.',
-        '170' => 'Dados do Cedente em branco ou inválido.',
+        '170' => 'Dados do Cedente em branco ou inválido.'
     );
 
     /**
@@ -198,9 +202,11 @@ class Registro1 extends Generico1
         '08' => 'Alteração de Seu Número',
         '09' => 'Protestar',
         '10' => 'Baixa por Decurso de Prazo - Solicitação CIP',
-        '11' => 'Sustar Protesto e Manter em Carteira',
+        '11' => 'Sustar Protesto e Manter em Carteira'
     ];
 
+    /**
+     */
     protected $meta = array(
         'tipo_registro' => array(
             'tamanho' => 1,
@@ -436,35 +442,32 @@ class Registro1 extends Generico1
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-        ),
+        )
     );
 
+    /**
+     */
     public function __construct($linhaTxt)
     {
         parent::__construct($linhaTxt);
 
-        RetornoAbstract::$linesCounter++;
+        RetornoAbstract::$linesCounter ++;
     }
 
     /**
      * Retorna um array contendo as descrições das ocorrências encontradas no layout
+     *
      * @return type
      */
     public function get_arrayOcorrencias()
     {
         $codMovimento = str_pad($this->__get('codigo_movimento'), 2, 0, STR_PAD_LEFT);
         return [
-            'codigo_movimento' => (empty($this->listaDescricaoMovimento[$this->__get('codigo_movimento')])) ?
-                '' :
-                'Cód. Movimento: ' . $codMovimento . ' ' . $this->listaDescricaoMovimento[$codMovimento],
+            'codigo_movimento' => (empty($this->listaDescricaoMovimento[$this->__get('codigo_movimento')])) ? '' : 'Cód. Movimento: ' . $codMovimento . ' ' . $this->listaDescricaoMovimento[$codMovimento],
 
-            'complemento_movimento' => empty($this->listaComplementoMovimento[$this->__get('complemento_movimento')]) ?
-                '' :
-                'Complemento Movimento: ' . $this->__get('complemento_movimento') . ' ' . $this->listaComplementoMovimento[$this->__get('complemento_movimento')],
+            'complemento_movimento' => empty($this->listaComplementoMovimento[$this->__get('complemento_movimento')]) ? '' : 'Complemento Movimento: ' . $this->__get('complemento_movimento') . ' ' . $this->listaComplementoMovimento[$this->__get('complemento_movimento')],
 
-            'tipo_instrucao_origem' => empty($this->listaTipoTipoInstrucaoOrigem[$this->__get('tipo_instrucao_origem')]) ?
-                '' :
-                'Instrução Origem: ' . $this->__get('tipo_instrucao_origem') . ' ' . $this->listaTipoTipoInstrucaoOrigem[$this->__get('tipo_instrucao_origem')],
+            'tipo_instrucao_origem' => empty($this->listaTipoTipoInstrucaoOrigem[$this->__get('tipo_instrucao_origem')]) ? '' : 'Instrução Origem: ' . $this->__get('tipo_instrucao_origem') . ' ' . $this->listaTipoTipoInstrucaoOrigem[$this->__get('tipo_instrucao_origem')]
         ];
     }
 }

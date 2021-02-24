@@ -28,11 +28,15 @@ namespace CnabPHP\resources\B033\retorno\L040;
 use CnabPHP\resources\generico\retorno\L040\Generico0;
 use CnabPHP\RetornoAbstract;
 
+/**
+ */
 class Registro0 extends Generico0
 {
 
     public $trailler;
 
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
@@ -165,20 +169,23 @@ class Registro0 extends Generico0
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-        ),
+        )
     );
 
+    /**
+     */
     public function __construct($linhaTxt)
     {
         parent::__construct($linhaTxt);
-        RetornoAbstract::$linesCounter++;
+        RetornoAbstract::$linesCounter ++;
         $this->inserirDetalhe();
     }
 
+    /**
+     */
     public function inserirDetalhe()
     {
-        while (RetornoAbstract::$linesCounter < (count(RetornoAbstract::$lines) - 4))
-        {
+        while (RetornoAbstract::$linesCounter < (count(RetornoAbstract::$lines) - 4)) {
             $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro1';
             $lote = new $class(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]);
             $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro5';

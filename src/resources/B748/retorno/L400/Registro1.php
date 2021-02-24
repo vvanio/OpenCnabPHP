@@ -1,7 +1,7 @@
 <?php
 
 /*
- * CnabPHP - GeraÃ§Ã£o de arquivos de remessa e retorno em PHP
+ * CnabPHP - Geração de arquivos de remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -24,15 +24,20 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP\resources\B748\retorno\L400;
 
 use CnabPHP\resources\generico\retorno\L400\Generico1;
 use CnabPHP\RetornoAbstract;
 
-class Registro1 extends Generico1 {
+/**
+ */
+class Registro1 extends Generico1
+{
 
     public $trailler;
+
+    /**
+     */
     protected $meta = array(
         'tipo_registro' => array(
             'tamanho' => 1,
@@ -40,7 +45,7 @@ class Registro1 extends Generico1 {
             'tipo' => 'int',
             'required' => true
         ),
-        'cod_carteira' => array( //13.3P
+        'cod_carteira' => array( // 13.3P
             'tamanho' => 1,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -70,7 +75,7 @@ class Registro1 extends Generico1 {
             'tipo' => 'alfa',
             'required' => true
         ),
-        'boleto_DDA' => array( //13.3P
+        'boleto_DDA' => array( // 13.3P
             'tamanho' => 1,
             'default' => '2',
             'tipo' => 'int',
@@ -118,13 +123,13 @@ class Registro1 extends Generico1 {
             'tipo' => 'alfa',
             'required' => true
         ),
-        'data_vencimento' => array( //26.3P
+        'data_vencimento' => array( // 26.3P
             'tamanho' => 6,
             'default' => ' ',
             'tipo' => 'date',
             'required' => true
         ),
-        'valor' => array( //21.3P
+        'valor' => array( // 21.3P
             'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
@@ -137,7 +142,7 @@ class Registro1 extends Generico1 {
             'tipo' => 'alfa',
             'required' => true
         ),
-        'especie_titulo' => array( //24.3P
+        'especie_titulo' => array( // 24.3P
             'tamanho' => 1,
             'default' => 'J',
             'tipo' => 'alfa',
@@ -177,7 +182,7 @@ class Registro1 extends Generico1 {
             'precision' => 2,
             'required' => true
         ),
-        'vlr_pago' => array( //12.3Q
+        'vlr_pago' => array( // 12.3Q
             'tamanho' => 11,
             'default' => '0',
             'tipo' => 'decimal',
@@ -204,25 +209,25 @@ class Registro1 extends Generico1 {
             'tipo' => 'alfa',
             'required' => true
         ),
-        'ocorrencia_19' => array( //24.3P
+        'ocorrencia_19' => array( // 24.3P
             'tamanho' => 1,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'filler45' => array( //24.3P
+        'filler45' => array( // 24.3P
             'tamanho' => 23,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'motivo_rejeicao' => array( //10.3Q
+        'motivo_rejeicao' => array( // 10.3Q
             'tamanho' => 10,
             'default' => '00',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'data_credito' => array( //26.3P
+        'data_credito' => array( // 26.3P
             'tamanho' => 8,
             'default' => '',
             'tipo' => 'date',
@@ -239,32 +244,34 @@ class Registro1 extends Generico1 {
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-        ),
+        )
     );
 
-    public function __construct($linhaTxt) {
+    /**
+     */
+    public function __construct($linhaTxt)
+    {
         parent::__construct($linhaTxt);
 
-        RetornoAbstract::$linesCounter++;
-        //$this->inserirDetalhe();
+        RetornoAbstract::$linesCounter ++;
+        // $this->inserirDetalhe();
     }
 
     /*
-      metodo get_R3U
-      metodo que espõe esse registro como se fosse o R3U da caixa
+     * metodo get_R3U
+     * metodo que espõe esse registro como se fosse o R3U da caixa
      */
-
-    public function get_R3U() {
+    public function get_R3U()
+    {
         return $this;
     }
 
     /*
-      metodo get_vlr_liquido
-      metodo que espõe esse vlr_liquido como se fosse o da caixa
+     * metodo get_vlr_liquido
+     * metodo que espõe esse vlr_liquido como se fosse o da caixa
      */
-
-    public function get_vlr_liquido() {
+    public function get_vlr_liquido()
+    {
         return $this->vlr_pago;
     }
-
 }

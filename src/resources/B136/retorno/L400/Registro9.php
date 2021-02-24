@@ -28,26 +28,31 @@ namespace CnabPHP\resources\B136\retorno\L400;
 use CnabPHP\resources\generico\retorno\L400\Generico9;
 use CnabPHP\Exception;
 
+/**
+ */
 class Registro9 extends Generico9
 {
+
+    /**
+     */
     protected $meta = array(
         'codigo_registro' => array(
             'tamanho' => 1,
             'default' => 9,
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'fixo' => array(
             'tamanho' => 393,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'numero_registro' => array(
             'tamanho' => 6,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        )
     );
 }

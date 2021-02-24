@@ -29,16 +29,22 @@ use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
 use Exception;
 
+/**
+ */
 class Generico1 extends RegistroRemAbstract
 {
 
     protected $counter = 0;
 
+    /**
+     */
     protected function set_codigo_lote($value)
     {
         $this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
     }
 
+    /**
+     */
     public function set_tipo_servico($value)
     {
         if ($value == 'S') {
@@ -52,6 +58,8 @@ class Generico1 extends RegistroRemAbstract
         }
     }
 
+    /**
+     */
     protected function set_tipo_inscricao($value)
     {
         $value = $value ? $value : RemessaAbstract::$entryData['tipo_inscricao'];
@@ -62,16 +70,34 @@ class Generico1 extends RegistroRemAbstract
         }
     }
 
+    /**
+     */
     protected function set_numero_inscricao($value)
     {
-        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array('.', '/', '-'), array(''), RemessaAbstract::$entryData['numero_inscricao']) : str_ireplace(array('.', '/', '-'), array(''), $value);
+        $this->data['numero_inscricao'] = $value == '' ? str_ireplace(array(
+            '.',
+            '/',
+            '-'
+        ), array(
+            ''
+        ), RemessaAbstract::$entryData['numero_inscricao']) : str_ireplace(array(
+            '.',
+            '/',
+            '-'
+        ), array(
+            ''
+        ), $value);
     }
 
+    /**
+     */
     protected function set_codigo_beneficiario($value)
     {
         $this->data['codigo_beneficiario'] = RemessaAbstract::$entryData['codigo_beneficiario'];
     }
 
+    /**
+     */
     protected function set_codigo_beneficiario_dv($value)
     {
         $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['codigo_beneficiario_dv'];
@@ -82,71 +108,97 @@ class Generico1 extends RegistroRemAbstract
         $this->data['agencia'] = $value == '' ? RemessaAbstract::$entryData['agencia'] : $value;
     }
 
+    /**
+     */
     protected function set_agencia_dv($value)
     {
         $this->data['agencia_dv'] = $value == '' ? RemessaAbstract::$entryData['agencia_dv'] : $value;
     }
 
+    /**
+     */
     protected function set_conta($value)
     {
         $this->data['conta'] = $value == '' ? RemessaAbstract::$entryData['conta'] : $value;
     }
 
+    /**
+     */
     protected function set_conta_dv($value)
     {
         $this->data['conta_dv'] = $value == '' ? RemessaAbstract::$entryData['conta_dv'] : $value;
     }
 
+    /**
+     */
     protected function set_codigo_convenio($value)
     {
         $this->data['codigo_convenio'] = RemessaAbstract::$entryData['codigo_beneficiario'];
     }
 
+    /**
+     */
     protected function set_nome_empresa($value)
     {
         $this->data['nome_empresa'] = $value == '' ? RemessaAbstract::$entryData['nome_empresa'] : $value;
     }
 
+    /**
+     */
     protected function set_numero_remessa($value)
     {
         $this->data['numero_remessa'] = $value == '' ? RemessaAbstract::$entryData['numero_sequencial_arquivo'] : $value;
     }
 
+    /**
+     */
     protected function set_mensagem_3($value)
     {
         $mensagem = (isset($this->entryData['mensagem'])) ? explode(PHP_EOL, $this->entryData['mensagem']) : array();
         $this->data['mensagem_3'] = count($mensagem) >= 1 ? $mensagem[0] : ' ';
     }
 
+    /**
+     */
     protected function set_mensagem_4($value)
     {
         $mensagem = (isset($this->entryData['mensagem'])) ? explode(PHP_EOL, $this->entryData['mensagem']) : array();
         $this->data['mensagem_4'] = count($mensagem) >= 2 ? $mensagem[1] : ' ';
     }
 
+    /**
+     */
     protected function set_data_gravacao($value)
     {
         $this->data['data_gravacao'] = date('Y-m-d');
     }
 
+    /**
+     */
     public function get_counter()
     {
-        $this->counter++;
+        $this->counter ++;
         return $this->counter;
     }
 
+    /**
+     */
     public function inserirDetalhe($data)
     {
         $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3P';
         $this->children[] = new $class($data);
     }
 
+    /**
+     */
     public function inserirTransferencia($data)
     {
         $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3A';
         $this->children[] = new $class($data);
     }
 
+    /**
+     */
     public function getText()
     {
         $retorno = '';

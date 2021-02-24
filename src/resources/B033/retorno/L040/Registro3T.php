@@ -29,14 +29,17 @@ use CnabPHP\resources\generico\retorno\L040\Generico3;
 use CnabPHP\RetornoAbstract;
 use CnabPHP\DetalhaMovimentoRetorno;
 
+/**
+ */
 class Registro3T extends Generico3
 {
 
     /**
      * Descrição dos comandos
-     *      Banco Santander (033)
-     *          Os códigos 03, 26 e 30 estão relacionados com a nota 40-a
-     *          Os códigos 06, 09 e 17 estão relacionados com a nota 40-c
+     * Banco Santander (033)
+     * Os códigos 03, 26 e 30 estão relacionados com a nota 40-a
+     * Os códigos 06, 09 e 17 estão relacionados com a nota 40-c
+     *
      * @var type
      */
     protected $descricaoMovimento = array(
@@ -72,7 +75,7 @@ class Registro3T extends Generico3
 
     /**
      * Detalhes da descrição do comando de retorno
-     *      Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
+     * Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
      *
      * @var array
      */
@@ -150,7 +153,7 @@ class Registro3T extends Generico3
 
     /**
      * Detalhes da descrição do comando de retorno
-     *      Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
+     * Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
      *
      * @var array
      */
@@ -168,66 +171,68 @@ class Registro3T extends Generico3
             '10' => 'Comandada cliente arquivo',
             '11' => 'Comandada cliente on-line',
             '12' => 'Decurso prazo – cliente',
-            '13' => 'Decurso prazo – banco',
+            '13' => 'Decurso prazo – banco'
         )
     );
 
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
             'default' => '033',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'codigo_lote' => array(
             'tamanho' => 4,
             'default' => 1,
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'tipo_registro' => array(
             'tamanho' => 1,
             'default' => '3',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'numero_registro' => array(
             'tamanho' => 5,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'seguimento' => array(
             'tamanho' => 1,
             'default' => 'T',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'filler1' => array(
             'tamanho' => 1,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'codigo_movimento' => array(
             'tamanho' => 2,
             'default' => '01',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         // - ------------------ até aqui é igual para todo registro tipo 3
         'agencia' => array(
             'tamanho' => 4,
             'default' => '',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'agencia_dv' => array(
             'tamanho' => 1,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'conta' => array(
             'tamanho' => 9,
             'default' => '0',
@@ -245,38 +250,38 @@ class Registro3T extends Generico3
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'nosso_numero' => array(
             'tamanho' => 13,
             'default' => '',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'carteira' => array(
             'tamanho' => 1,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'seu_numero' => array(
             'tamanho' => 15,
             'default' => '',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'data_vencimento' => array(
             'tamanho' => 8,
             'default' => '',
             'tipo' => 'date',
             'required' => true
-		),
+        ),
         'vlr_nominal' => array(
             'tamanho' => 13,
             'default' => '0',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
-		),
+        ),
         'cod_banco_receb' => array(
             'tamanho' => 3,
             'default' => '0',
@@ -288,70 +293,72 @@ class Registro3T extends Generico3
             'default' => ' ',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'dv_agencia_receb' => array(
             'tamanho' => 1,
             'default' => '',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'identificacao_titulo_empresa' => array(
             'tamanho' => 25,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'codigo_moeda' => array(
             'tamanho' => 2,
             'default' => '',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'tipo_inscricao' => array(
             'tamanho' => 1,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'numero_inscricao' => array(
             'tamanho' => 15,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'nome_pagador' => array(
             'tamanho' => 40,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'conta_cobranca' => array(
             'tamanho' => 10,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'vlr_tarifa' => array(
             'tamanho' => 13,
             'default' => '',
             'tipo' => 'decimal',
             'precision' => 2,
             'required' => true
-		),
+        ),
         'codigo_ocorrencia' => array(
             'tamanho' => 10,
             'default' => '0',
             'tipo' => 'alfa', // Manual diz int, mas usado como alfa para manter os zeros à esquerda
             'required' => true
-		),
+        ),
         'filler3' => array(
             'tamanho' => 22,
             'default' => '0',
             'tipo' => 'alfa',
             'required' => true
-		),
+        )
     );
 
+    /**
+     */
     public function __construct($data = null)
     {
         if (empty($this->data)) {
@@ -360,33 +367,40 @@ class Registro3T extends Generico3
         $this->inserirDetalhe($data);
     }
 
+    /**
+     */
     public function inserirDetalhe($data)
     {
-        RetornoAbstract::$linesCounter++;
+        RetornoAbstract::$linesCounter ++;
         if (isset(RetornoAbstract::$lines[RetornoAbstract::$linesCounter])) {
             $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro3U';
             $this->children[] = new $class(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]);
-            if (isset(RetornoAbstract::$lines[RetornoAbstract::$linesCounter + 1]) &&
-                substr(RetornoAbstract::$lines[RetornoAbstract::$linesCounter + 1], 13, 1) == "Y") {
-                RetornoAbstract::$linesCounter++;
+            if (isset(RetornoAbstract::$lines[RetornoAbstract::$linesCounter + 1]) && substr(RetornoAbstract::$lines[RetornoAbstract::$linesCounter + 1], 13, 1) == "Y") {
+                RetornoAbstract::$linesCounter ++;
                 $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro3Y';
                 $this->children[] = new $class(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]);
             }
         }
     }
 
+    /**
+     */
     public function get_data_ocorrencia()
     {
         $r3u = $this->R3U;
         return $r3u->___get('data_ocorrencia');
     }
 
+    /**
+     */
     public function get_vlr_pago()
     {
         $r3u = $this->R3U;
         return $r3u->___get('vlr_pago');
     }
 
+    /**
+     */
     public function get_codigo_movimento()
     {
         $r3u = $this->R3U;
@@ -396,11 +410,12 @@ class Registro3T extends Generico3
     /**
      * Retorna um array com a lista das descrições de comando e detalhes do
      * comando para o movimento
-     * 
+     *
      * @return array
      */
-    public function get_arrayOcorrencias(){
-        $detalhes = new DetalhaMovimentoRetorno('033','240');
+    public function get_arrayOcorrencias()
+    {
+        $detalhes = new DetalhaMovimentoRetorno('033', '240');
 
         $codigoMovimento = str_pad($this->data['codigo_movimento'], 2, 0, STR_PAD_LEFT);
 

@@ -24,92 +24,111 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP\resources\B001\retorno\L030;
+
 use CnabPHP\resources\generico\retorno\L030\Generico3;
-//use CnabPHP\RetornoAbstract;
+// use CnabPHP\RetornoAbstract;
 use CnabPHP\Exception;
 
+/**
+ */
 class Registro3Y08 extends Generico3
 {
-	protected $meta = array(
-		'codigo_banco'=>array(          // 1.9U
-			'tamanho'=>3,
-			'default'=>'001',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_lote'=>array(           // 2.9U
-			'tamanho'=>4,
-			'default'=>1,
-			'tipo'=>'int',
-			'required'=>true),
-		'tipo_registro'=>array(         // 3.9U
-			'tamanho'=>1,
-			'default'=>'3',
-			'tipo'=>'int',
-			'required'=>true),
-		'numero_registro'=>array(       // 4.9U
-			'tamanho'=>5,
-			'default'=>'0',
-			'tipo'=>'int',
-			'required'=>true),
-		'seguimento'=>array(            // 5.9U
-			'tamanho'=>1,
-			'default'=>'U',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'filler1'=>array(               // 6.9U
-			'tamanho'=>1,
-			'default'=>' ',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_movimento'=>array(      // 7.9U
-			'tamanho'=>2,
-			'default'=>'', // entrada de titulo
-			'tipo'=>'int',
-			'required'=>true),
-			
-			// - ------------------ até aqui é igual para todo registro tipo 3
-			
-		'identificacao_registro'=>array(               // 8.9U
-			'tamanho'=>2,
-			'default'=>'',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_solicitacao'=>array(            // 9.9U
-			'tamanho'=>2,
-			'default'=>'',
-			'tipo'=>'int',
-			'required'=>true),
-		'id_identificador'=>array(       //10.9U
-			'tamanho'=>1,
-			'default'=>'',
-			'tipo'=>'int',
-			'required'=>true),
-		'numero_solicitacao'=>array(               // 11.9U
-			'tamanho'=>18,
-			'default'=>'',
-			'tipo'=>'int',
-			'required'=>true),
-		'descricao'=>array(               //12.9U
-			'tamanho'=>180,
-			'default'=>'',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'quantidade'=>array(      //13.9U   
-			'tamanho'=>4,
-			'default'=>'',
-			'tipo'=>'int',
-			'required'=>true),
-		'erro'=>array(  //14.9U
-			'tamanho'=>3,
-			'default'=>' ',
-			'tipo'=>'int',
-			'required'=>true),
-		'filler2'=>array(   //15.9U
-			'tamanho'=>30,
-			'default'=>'',
-			'tipo'=>'alfa',
-			'required'=>true),	
-	);
-}
 
-?>
+    /**
+     */
+    protected $meta = array(
+        'codigo_banco' => array( // 1.9U
+            'tamanho' => 3,
+            'default' => '001',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_lote' => array( // 2.9U
+            'tamanho' => 4,
+            'default' => 1,
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'tipo_registro' => array( // 3.9U
+            'tamanho' => 1,
+            'default' => '3',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'numero_registro' => array( // 4.9U
+            'tamanho' => 5,
+            'default' => '0',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'seguimento' => array( // 5.9U
+            'tamanho' => 1,
+            'default' => 'U',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler1' => array( // 6.9U
+            'tamanho' => 1,
+            'default' => ' ',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_movimento' => array( // 7.9U
+            'tamanho' => 2,
+            'default' => '', // entrada de titulo
+            'tipo' => 'int',
+            'required' => true
+        ),
+
+        // - ------------------ até aqui é igual para todo registro tipo 3
+
+        'identificacao_registro' => array( // 8.9U
+            'tamanho' => 2,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_solicitacao' => array( // 9.9U
+            'tamanho' => 2,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'id_identificador' => array( // 10.9U
+            'tamanho' => 1,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'numero_solicitacao' => array( // 11.9U
+            'tamanho' => 18,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'descricao' => array( // 12.9U
+            'tamanho' => 180,
+            'default' => '',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'quantidade' => array( // 13.9U
+            'tamanho' => 4,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'erro' => array( // 14.9U
+            'tamanho' => 3,
+            'default' => ' ',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler2' => array( // 15.9U
+            'tamanho' => 30,
+            'default' => '',
+            'tipo' => 'alfa',
+            'required' => true
+        )
+    );
+}

@@ -24,7 +24,6 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP\resources\B033\remessa\cnab240;
 
 use CnabPHP\resources\generico\remessa\cnab240\Generico3;
@@ -32,8 +31,13 @@ use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\Exception;
 
-class Registro3P extends Generico3 {
+/**
+ */
+class Registro3P extends Generico3
+{
 
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
@@ -246,9 +250,9 @@ class Registro3P extends Generico3 {
          * 2 = Percentual ate a data informada – Informar o percentual no campo “percentual de desconto a ser concedido”
          * 3 = Valor por antecipação por dia corrido - Informar o valor no campo “valor de desconto a ser concedido”
          * 4 = Valor por antecipação dia útil - Informar o valor no campo “valor de desconto a ser concedido” Para os código 1 e 2 será obrigatório a informação da “data” NOTA: é possível informar até duas ocorrências de desconto, por ex.:
-         *      Segmento P : Valor do titulo R$ 100,00 Vencimento 30/09/1998
-         *      ( Desconto 1 R$ 10,00 p/ pagamento até 25/09/1998
-         *      Segmento R: < Desconto 2 R$ 8,00 p/ pagamento até 20/09/1998
+         * Segmento P : Valor do titulo R$ 100,00 Vencimento 30/09/1998
+         * ( Desconto 1 R$ 10,00 p/ pagamento até 25/09/1998
+         * Segmento R: < Desconto 2 R$ 8,00 p/ pagamento até 20/09/1998
          */
         'codigo_desconto' => array(
             'tamanho' => 1,
@@ -342,47 +346,57 @@ class Registro3P extends Generico3 {
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-        ),
+        )
     );
 
     /**
      * Sobrescreve a informação do Nosso Número incluindo o DV ao final
+     *
      * @param int $value
      */
-    protected function set_nosso_numero($value) {
+    protected function set_nosso_numero($value)
+    {
         $this->data['nosso_numero'] = $value . self::modulo11($value);
     }
 
     /**
      * Sobrescreve a informação do Beneficiário com os dados da Conta, orientações Santander
+     *
      * @param int $value
      */
-    protected function set_codigo_beneficiario($value) {
+    protected function set_codigo_beneficiario($value)
+    {
         $this->data['codigo_beneficiario'] = RemessaAbstract::$entryData['conta'];
     }
 
     /**
      * Sobrescreve a informação do BeneficiárioDv com os dados da ContaDv, orientações Santander
+     *
      * @param int $value
      */
-    protected function set_codigo_beneficiario_dv($value) {
+    protected function set_codigo_beneficiario_dv($value)
+    {
         $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['conta_dv'];
     }
 
-    public function __construct($data = null) {
-        if (empty($this->data))
+    /**
+     */
+    public function __construct($data = null)
+    {
+        if (empty($this->data)) {
             parent::__construct($data);
+        }
         $this->inserirDetalhe($data);
     }
 
-    public function inserirDetalhe($data) {
+    /**
+     */
+    public function inserirDetalhe($data)
+    {
         if ((int) $data['codigo_movimento'] != 2) {
             $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
             $this->children[] = new $class($data);
-            if (isset($data['codigo_desconto2']) ||
-                    isset($data['codigo_desconto3']) ||
-                    isset($data['vlr_multa']) ||
-                    isset($data['informacao_pagador'])) {
+            if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
                 $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
                 $this->children[] = new $class($data);
             }
@@ -391,16 +405,17 @@ class Registro3P extends Generico3 {
 
     /**
      * Cálculo do módulo 11
+     *
      * @param int $index
      * @return int
      */
-    protected static function modulo11($num, $base = 9, $r = 0) {
-
+    protected static function modulo11($num, $base = 9, $r = 0)
+    {
         $soma = 0;
         $fator = 2;
 
         // Separacao dos numeros
-        for ($i = strlen($num); $i > 0; $i--) {
+        for ($i = strlen($num); $i > 0; $i --) {
             // pega cada numero isoladamente
             $numeros[$i] = substr($num, $i - 1, 1);
             // Efetua multiplicacao do numero pelo falor
@@ -411,7 +426,7 @@ class Registro3P extends Generico3 {
                 // restaura fator de multiplicacao para 2
                 $fator = 1;
             }
-            $fator++;
+            $fator ++;
         }
 
         // Calculo do modulo 11
@@ -427,5 +442,4 @@ class Registro3P extends Generico3 {
             return $resto;
         }
     }
-
 }

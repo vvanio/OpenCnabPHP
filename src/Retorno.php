@@ -1,6 +1,6 @@
 <?php
 /*
- * CnabPHP - GeraÃ§Ã£o de arquivos de remessa e retorno em PHP
+ * CnabPHP - Geração de arquivos de remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -24,12 +24,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP;
-use \CnabPHP\RetornoAbstract;
-use \CnabPHP;
 
-class Retorno extends RetornoAbstract{
-	public function __construct($conteudo){    
-		parent::__construct($conteudo);
-	}
+use CnabPHP\RetornoAbstract;
+use CnabPHP;
+
+/**
+ */
+class Retorno extends RetornoAbstract
+{
+
+    /**
+     */
+    public function __construct($conteudo)
+    {
+        parent::__construct($conteudo);
+    }
 }
-?>

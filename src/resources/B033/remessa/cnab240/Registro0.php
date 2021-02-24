@@ -25,11 +25,15 @@
  */
 namespace CnabPHP\resources\B033\remessa\cnab240;
 
-use \CnabPHP\resources\generico\remessa\cnab240\Generico0;
+use CnabPHP\resources\generico\remessa\cnab240\Generico0;
 
+/**
+ */
 class Registro0 extends Generico0
 {
 
+    /**
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,
@@ -150,6 +154,6 @@ class Registro0 extends Generico0
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-        ),
+        )
     );
 }

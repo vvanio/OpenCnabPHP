@@ -1,13 +1,17 @@
 <?php
-
 namespace CnabPHP\resources\B748\remessa\cnab400;
 
 use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\resources\generico\remessa\cnab400\Generico1;
 
-class Registro1 extends Generico1 {
+/**
+ */
+class Registro1 extends Generico1
+{
 
+    /**
+     */
     protected $meta = array(
         'tipo_registro' => array(
             'tamanho' => 1,
@@ -314,27 +318,40 @@ class Registro1 extends Generico1 {
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-        ),
+        )
     );
 
-    public function __construct($data = null) {
-        if (empty($this->data))
+    /**
+     */
+    public function __construct($data = null)
+    {
+        if (empty($this->data)) {
             parent::__construct($data);
+        }
         $this->inserirMensagem($data);
     }
 
-    public function inserirMensagem($data) {
-        if (!empty($data['mensagem'])) {
+    /**
+     */
+    public function inserirMensagem($data)
+    {
+        if (! empty($data['mensagem'])) {
             $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro2';
             $this->children[] = new $class($data);
         }
     }
-   
-    public function set_emissao_boleto($value) {
-        $this->data['emissao_boleto'] = $value == 2 ? "B" : 'A';  // 1 igual A =  emissão pelo banco 2 igual B = emissão pelo cedente
+
+    /**
+     */
+    public function set_emissao_boleto($value)
+    {
+        $this->data['emissao_boleto'] = $value == 2 ? "B" : 'A'; // 1 igual A = emissão pelo banco 2 igual B = emissão pelo cedente
     }
 
-    public function set_protestar($value) {
+    /**
+     */
+    public function set_protestar($value)
+    {
         if ($value == 1) {
             $this->data['protestar'] = '06';
         } else {
@@ -342,47 +359,50 @@ class Registro1 extends Generico1 {
         }
     }
 
-    protected function set_data_instrucao() {
+    /**
+     */
+    protected function set_data_instrucao()
+    {
         $this->data['data_instrucao'] = date('Y-m-d');
     }
 
-    protected function set_nosso_numero($value) {
-        $modulo11 = self::modulo11(str_pad(RemessaAbstract::$entryData['agencia'], 4, 0, STR_PAD_LEFT)
-                        . str_pad(RemessaAbstract::$entryData['posto'], 2, 0, STR_PAD_LEFT)
-                        . str_pad(RemessaAbstract::$entryData['codigo_beneficiario'], 5, 0, STR_PAD_LEFT)
-                        . str_pad(strftime("%y", strtotime($this->entryData['data_emissao'])), 2, 0, STR_PAD_LEFT)
-                        . 2
-                        . str_pad($value, 5, 0, STR_PAD_LEFT));
+    /**
+     */
+    protected function set_nosso_numero($value)
+    {
+        $modulo11 = self::modulo11(str_pad(RemessaAbstract::$entryData['agencia'], 4, 0, STR_PAD_LEFT) . str_pad(RemessaAbstract::$entryData['posto'], 2, 0, STR_PAD_LEFT) . str_pad(RemessaAbstract::$entryData['codigo_beneficiario'], 5, 0, STR_PAD_LEFT) . str_pad(strftime("%y", strtotime($this->entryData['data_emissao'])), 2, 0, STR_PAD_LEFT) . 2 . str_pad($value, 5, 0, STR_PAD_LEFT));
         $this->data['nosso_numero'] = strftime("%y", strtotime($this->entryData['data_emissao'])) . 2 . str_pad($value, 5, 0, STR_PAD_LEFT) . $modulo11['digito'];
     }
 
-    protected static function modulo11($num, $base = 9) {
+    /**
+     */
+    protected static function modulo11($num, $base = 9)
+    {
         $fator = 2;
 
         $soma = 0;
         // Separacao dos numeros.
-        for ($i = strlen($num); $i > 0; $i--) {
-            //  Pega cada numero isoladamente.
+        for ($i = strlen($num); $i > 0; $i --) {
+            // Pega cada numero isoladamente.
             $numeros[$i] = substr($num, $i - 1, 1);
-            //  Efetua multiplicacao do numero pelo falor.
+            // Efetua multiplicacao do numero pelo falor.
             $parcial[$i] = $numeros[$i] * $fator;
-            //  Soma dos digitos.
+            // Soma dos digitos.
             $soma += $parcial[$i];
             if ($fator == $base) {
-                //  Restaura fator de multiplicacao para 2.
+                // Restaura fator de multiplicacao para 2.
                 $fator = 1;
             }
-            $fator++;
+            $fator ++;
         }
         $result = array(
             'digito' => ($soma * 10) % 11,
             // Remainder.
-            'resto' => $soma % 11,
+            'resto' => $soma % 11
         );
         if ($result['digito'] == 10) {
             $result['digito'] = 0;
         }
         return $result;
     }
-
 }

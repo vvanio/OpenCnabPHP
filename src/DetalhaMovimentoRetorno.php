@@ -1,7 +1,6 @@
 <?php
-
 /*
- * CnabPHP - GeraÃ§Ã£o de arquivos de remessa e retorno em PHP
+ * CnabPHP - Geração de arquivos de remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -24,59 +23,121 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 namespace CnabPHP;
 
-class DetalhaMovimentoRetorno {
+/**
+ */
+class DetalhaMovimentoRetorno
+{
 
     private $descricoes = array();
+
     private $banco;
 
-    public function __construct($banco, $layout) {
+    /**
+     */
+    public function __construct($banco, $layout)
+    {
         $this->banco = $banco;
         $stringMetodo = "preparaBanco" . $banco . "_" . $layout;
         $this->descricoes = $this->$stringMetodo();
     }
 
-    public function preparaBanco033_240() {
+    /**
+     */
+    public function preparaBanco033_240()
+    {
         /**
          * Descrição dos comandos
-         *      Banco Santander (033)
-         *          Os códigos 03, 26 e 30 estão relacionados com a nota 40-a
-         *          Os códigos 06, 09 e 17 estão relacionados com a nota 40-c
+         * Banco Santander (033)
+         * Os códigos 03, 26 e 30 estão relacionados com a nota 40-a
+         * Os códigos 06, 09 e 17 estão relacionados com a nota 40-c
          */
         $descricaoMovimento = array(
-            '02' => array('txt' => 'Entrada confirmada'),
-            '03' => array('txt' => 'Entrada rejeitada'),
-            '04' => array('txt' => 'Transferência de carteira/entrada'),
-            '05' => array('txt' => 'Transferência de carteira/baixa'),
-            '06' => array('txt' => 'Liquidação'),
-            '09' => array('txt' => 'Baixa'),
-            '11' => array('txt' => 'Títulos em carteira ( em ser)'),
-            '12' => array('txt' => 'Confirmação recebimento instrução de abatimento'),
-            '13' => array('txt' => 'Confirmação recebimento instrução de cancelamento abatimento'),
-            '14' => array('txt' => 'Confirmação recebimento instrução alteração de vencimento'),
-            '17' => array('txt' => 'Liquidação após baixa ou liquidação título não registrado'),
-            '19' => array('txt' => 'Confirmação recebimento instrução de protesto'),
-            '20' => array('txt' => 'Confirmação recebimento instrução de sustação/Não Protestar'),
-            '23' => array('txt' => 'Remessa a cartorio ( aponte em cartorio)'),
-            '24' => array('txt' => 'Retirada de cartorio e manutenção em carteira'),
-            '25' => array('txt' => 'Protestado e baixado ( baixa por ter sido protestado)'),
-            '26' => array('txt' => 'Instrução rejeitada'),
-            '27' => array('txt' => 'Confirmação do pedido de alteração de outros dados'),
-            '28' => array('txt' => 'Débito de tarifas/custas'),
-            '29' => array('txt' => 'Ocorrências do Pagador'),
-            '30' => array('txt' => 'Alteração de dados rejeitada'),
-            '32' => array('txt' => 'Código de IOF inválido'),
-            '51' => array('txt' => 'Título DDA reconhecido pelo Pagador'),
-            '52' => array('txt' => 'Título DDA não reconhecido pelo Pagador'),
-            '53' => array('txt' => 'Título DDA recusado pela CIP'),
-            'A4' => array('txt' => 'Pagador DDA')
+            '02' => array(
+                'txt' => 'Entrada confirmada'
+            ),
+            '03' => array(
+                'txt' => 'Entrada rejeitada'
+            ),
+            '04' => array(
+                'txt' => 'Transferência de carteira/entrada'
+            ),
+            '05' => array(
+                'txt' => 'Transferência de carteira/baixa'
+            ),
+            '06' => array(
+                'txt' => 'Liquidação'
+            ),
+            '09' => array(
+                'txt' => 'Baixa'
+            ),
+            '11' => array(
+                'txt' => 'Títulos em carteira ( em ser)'
+            ),
+            '12' => array(
+                'txt' => 'Confirmação recebimento instrução de abatimento'
+            ),
+            '13' => array(
+                'txt' => 'Confirmação recebimento instrução de cancelamento abatimento'
+            ),
+            '14' => array(
+                'txt' => 'Confirmação recebimento instrução alteração de vencimento'
+            ),
+            '17' => array(
+                'txt' => 'Liquidação após baixa ou liquidação título não registrado'
+            ),
+            '19' => array(
+                'txt' => 'Confirmação recebimento instrução de protesto'
+            ),
+            '20' => array(
+                'txt' => 'Confirmação recebimento instrução de sustação/Não Protestar'
+            ),
+            '23' => array(
+                'txt' => 'Remessa a cartorio ( aponte em cartorio)'
+            ),
+            '24' => array(
+                'txt' => 'Retirada de cartorio e manutenção em carteira'
+            ),
+            '25' => array(
+                'txt' => 'Protestado e baixado ( baixa por ter sido protestado)'
+            ),
+            '26' => array(
+                'txt' => 'Instrução rejeitada'
+            ),
+            '27' => array(
+                'txt' => 'Confirmação do pedido de alteração de outros dados'
+            ),
+            '28' => array(
+                'txt' => 'Débito de tarifas/custas'
+            ),
+            '29' => array(
+                'txt' => 'Ocorrências do Pagador'
+            ),
+            '30' => array(
+                'txt' => 'Alteração de dados rejeitada'
+            ),
+            '32' => array(
+                'txt' => 'Código de IOF inválido'
+            ),
+            '51' => array(
+                'txt' => 'Título DDA reconhecido pelo Pagador'
+            ),
+            '52' => array(
+                'txt' => 'Título DDA não reconhecido pelo Pagador'
+            ),
+            '53' => array(
+                'txt' => 'Título DDA recusado pela CIP'
+            ),
+            'A4' => array(
+                'txt' => 'Pagador DDA'
+            )
         );
+
         /**
          * Detalhes da descrição do comando de retorno
-         *      Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
-         *
+         * Banco Santander (033)
+         * Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
          */
         $detalheDescricaoMovimento1 = array(
             '01' => 'Código do banco invalido',
@@ -147,11 +208,11 @@ class DetalhaMovimentoRetorno {
             '72' => 'Entrada de título Sem Registro',
             '90' => 'Identificador/Quantidade de Parcelas de carnê invalido'
         );
+
         /**
          * Detalhes da descrição do comando de retorno
-         *      Banco Santander (033) Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
-         *
-         * @var array
+         * Banco Santander (033)
+         * Códigos de rejeições de 01 a 64 associados ao códigos de movimento 03, 26 e 30 (nota 40)
          */
         $detalheDescricaoMovimento2 = array(
             '01' => 'Por saldo',
@@ -166,8 +227,9 @@ class DetalhaMovimentoRetorno {
             '10' => 'Comandada cliente arquivo',
             '11' => 'Comandada cliente on-line',
             '12' => 'Decurso prazo – cliente',
-            '13' => 'Decurso prazo – banco',
+            '13' => 'Decurso prazo – banco'
         );
+
         // insere os detalhes nos moviemtnos com detalhes segunda a docuemtação do banco
         $descricaoMovimento['03']['detalhes'] = $detalheDescricaoMovimento1;
         $descricaoMovimento['26']['detalhes'] = $detalheDescricaoMovimento1;
@@ -180,23 +242,25 @@ class DetalhaMovimentoRetorno {
         return $descricaoMovimento;
     }
 
-    public function getBanco() {
+    /**
+     */
+    public function getBanco()
+    {
         return $this->banco;
     }
 
-    public function getArrayTxtOcorrencias($codigoMovimento, $srtCodDetalhes) {
+    /**
+     */
+    public function getArrayTxtOcorrencias($codigoMovimento, $srtCodDetalhes)
+    {
         $arrayCodDetalhes = str_split($srtCodDetalhes, 2);
         $arrayDescricoes = array();
 
-        $arrayDescricoes[] = (empty($this->descricoes[$codigoMovimento])) ?
-            "Código de Movimento n° {$codigoMovimento} não identificado!" :
-            $this->descricoes[$codigoMovimento]['txt'];
+        $arrayDescricoes[] = (empty($this->descricoes[$codigoMovimento])) ? "Código de Movimento n° {$codigoMovimento} não identificado!" : $this->descricoes[$codigoMovimento]['txt'];
 
         foreach ($arrayCodDetalhes as $key) {
             if ($key !== '00') {
-                $arrayDescricoes[] = (array_key_exists($key, $this->descricoes[$codigoMovimento]['detalhes'])) ?
-                    $this->descricoes[$codigoMovimento]['detalhes'][$key] :
-                    "Detalhes do Movimento n° {$key} não identificado!";
+                $arrayDescricoes[] = (array_key_exists($key, $this->descricoes[$codigoMovimento]['detalhes'])) ? $this->descricoes[$codigoMovimento]['detalhes'][$key] : "Detalhes do Movimento n° {$key} não identificado!";
             }
         }
 

@@ -27,13 +27,17 @@ namespace CnabPHP;
 
 use CnabPHP\RegistroAbstract;
 
+/**
+ */
 abstract class RegistroRetAbstract extends RegistroAbstract
 {
+
     public $linha;
 
     /**
      * Método __construct()
      * instancia registro qualquer
+     *
      * @$data = array de dados para o registro
      */
     public function __construct($linhaTxt)
@@ -44,15 +48,11 @@ abstract class RegistroRetAbstract extends RegistroAbstract
         $this->linha = $linhaTxt;
 
         foreach ($this->meta as $key => $value) {
-            $valor = (isset($value['precision'])) ?
-                substr($linhaTxt, $posicao, $value['tamanho'] + $value['precision']) :
-                substr($linhaTxt, $posicao, $value['tamanho']);
+            $valor = (isset($value['precision'])) ? substr($linhaTxt, $posicao, $value['tamanho'] + $value['precision']) : substr($linhaTxt, $posicao, $value['tamanho']);
 
             $this->$key = $valor;
 
-            $posicao += (isset($value['precision'])) ?
-                $value['tamanho'] + $value['precision'] :
-                $value['tamanho'];
+            $posicao += (isset($value['precision'])) ? $value['tamanho'] + $value['precision'] : $value['tamanho'];
         }
     }
 
@@ -65,7 +65,10 @@ abstract class RegistroRetAbstract extends RegistroAbstract
         // verifica se existe método set_<propriedade>
         if (method_exists($this, 'set_' . $prop)) {
             // executa o Método set_<propriedade>
-            call_user_func(array($this, 'set_' . $prop), $value);
+            call_user_func(array(
+                $this,
+                'set_' . $prop
+            ), $value);
         } else {
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
             switch ($metaData['tipo']) {
@@ -114,7 +117,10 @@ abstract class RegistroRetAbstract extends RegistroAbstract
         // verifica se existe Método get_<propriedade>
         if (method_exists($this, 'get_' . $prop)) {
             // executa o Método get_<propriedade>
-            return call_user_func(array($this, 'get_' . $prop));
+            return call_user_func(array(
+                $this,
+                'get_' . $prop
+            ));
         } else {
             return $this->data[$prop];
         }
@@ -146,6 +152,8 @@ abstract class RegistroRetAbstract extends RegistroAbstract
         }
     }
 
+    /**
+     */
     public function get_meta()
     {
         return $this->meta;
@@ -159,6 +167,7 @@ abstract class RegistroRetAbstract extends RegistroAbstract
     {
         return $this->children;
     }
+
     /**
      * Método getChild()
      * Metodo que retorna um filho

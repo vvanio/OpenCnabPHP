@@ -24,42 +24,53 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP\resources\B001\remessa\cnab240;
+
 use CnabPHP\resources\generico\remessa\cnab240\Generico5;
 use Exception;
 
+/**
+ */
 class Registro5 extends Generico5
 {
-	protected $meta = array(
-		'codigo_banco'=>array(      //01.5
-			'tamanho'=>3,
-			'default'=>'001',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_lote'=>array(       //02.5
-			'tamanho'=>4,
-			'default'=>1,
-			'tipo'=>'int',
-			'required'=>true),
-		'tipo_registro'=>array(     //03.5
-			'tamanho'=>1,
-			'default'=>'5',
-			'tipo'=>'int',
-			'required'=>true),
-		'filler1'=>array(          //04.5
-			'tamanho'=>9,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'qtd_registros'=>array(      //05.5
-			'tamanho'=>6,
-			'default'=>'0',
-			'tipo'=>'int',
-			'required'=>true),
-		'filler3'=>array(           //13.5
-			'tamanho'=>217,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-	);
+
+    /**
+     */
+    protected $meta = array(
+        'codigo_banco' => array( // 01.5
+            'tamanho' => 3,
+            'default' => '001',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_lote' => array( // 02.5
+            'tamanho' => 4,
+            'default' => 1,
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'tipo_registro' => array( // 03.5
+            'tamanho' => 1,
+            'default' => '5',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler1' => array( // 04.5
+            'tamanho' => 9,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'qtd_registros' => array( // 05.5
+            'tamanho' => 6,
+            'default' => '0',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler3' => array( // 13.5
+            'tamanho' => 217,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        )
+    );
 }
-?>

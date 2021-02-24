@@ -24,11 +24,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP;
-use \CnabPHP\RemessaAbstract;
-use \CnabPHP;
-class Remessa extends RemessaAbstract{
-	public function __construct($banco,$layout,$data){    
-		parent::__construct($banco,$layout,$data);
-	}
+
+use CnabPHP\RemessaAbstract;
+use CnabPHP;
+
+/**
+ */
+class Remessa extends RemessaAbstract
+{
+
+    /**
+     */
+    public function __construct($banco, $layout, $data)
+    {
+        parent::__construct($banco, $layout, $data);
+    }
 }
-?>

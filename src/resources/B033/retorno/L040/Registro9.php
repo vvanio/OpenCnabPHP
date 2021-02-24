@@ -27,6 +27,8 @@ namespace CnabPHP\resources\B033\retorno\L040;
 
 use CnabPHP\resources\generico\retorno\L040\Generico9;
 
+/**
+ */
 class Registro9 extends Generico9
 {
 
@@ -36,42 +38,42 @@ class Registro9 extends Generico9
             'default' => '033',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'codigo_lote' => array(
             'tamanho' => 4,
             'default' => 9999,
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'tipo_registro' => array(
             'tamanho' => 1,
             'default' => '9',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'filler1' => array(
             'tamanho' => 9,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-		),
+        ),
         'qtd_lotes' => array(
             'tamanho' => 6,
             'default' => '1',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'qtd_registros' => array(
             'tamanho' => 6,
             'default' => '0',
             'tipo' => 'int',
             'required' => true
-		),
+        ),
         'filler2' => array(
             'tamanho' => 211,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
-		),
+        )
     );
 }

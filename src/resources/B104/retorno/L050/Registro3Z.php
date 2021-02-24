@@ -24,45 +24,54 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace CnabPHP\resources\B104\retorno\L050;
+
 use CnabPHP\resources\generico\retorno\L050\Generico3;
-//use CnabPHP\RetornoAbstract;
+// use CnabPHP\RetornoAbstract;
 use CnabPHP\Exception;
 
+/**
+ */
 class Registro3B extends Generico3
 {
-	protected $meta = array(
-		'codigo_banco'=>array(          // 1.3B
-			'tamanho'=>3,
-			'default'=>'104',
-			'tipo'=>'int',
-			'required'=>true),
-		'codigo_lote'=>array(           // 2.3B
-			'tamanho'=>4,
-			'default'=>1,
-			'tipo'=>'int',
-			'required'=>true),
-		'tipo_registro'=>array(         // 3.3B
-			'tamanho'=>1,
-			'default'=>'3',
-			'tipo'=>'int',
-			'required'=>true),
-		'numero_registro'=>array(       // 4.3B
-			'tamanho'=>5,
-			'default'=>'2',
-			'tipo'=>'int',
-			'required'=>true),
-		'seguimento'=>array(            // 5.3B
-			'tamanho'=>1,
-			'default'=>'Z',
-			'tipo'=>'alfa',
-			'required'=>true),
-		'filler1'=>array(            	// 5.3B
-			'tamanho'=>226,
-			'default'=>' ',
-			'tipo'=>'alfa',
-			'required'=>true),
-		
-	);
-}
 
-?>
+    /**
+     */
+    protected $meta = array(
+        'codigo_banco' => array( // 1.3B
+            'tamanho' => 3,
+            'default' => '104',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'codigo_lote' => array( // 2.3B
+            'tamanho' => 4,
+            'default' => 1,
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'tipo_registro' => array( // 3.3B
+            'tamanho' => 1,
+            'default' => '3',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'numero_registro' => array( // 4.3B
+            'tamanho' => 5,
+            'default' => '2',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'seguimento' => array( // 5.3B
+            'tamanho' => 1,
+            'default' => 'Z',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler1' => array( // 5.3B
+            'tamanho' => 226,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        )
+    );
+}

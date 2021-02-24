@@ -1,6 +1,6 @@
 <?php
 /*
- * CnabPHP - Gera??o de arquivos de remessa e retorno em PHP
+ * CnabPHP - Geração de arquivos de remessa e retorno em PHP
  *
  * LICENSE: The MIT License (MIT)
  *
@@ -42,7 +42,8 @@ abstract class RegistroAbstract
 
     /**
      * Método getUnformated()
-     * busca o valor de dentro do campo dentro do objeto de forma simples sem formata??o de valor por exemplo
+     * busca o valor de dentro do campo dentro do objeto de forma simples sem formatação
+     * de valor por exemplo
      */
     public function getUnformated($prop)
     {
@@ -54,26 +55,26 @@ abstract class RegistroAbstract
 
     /**
      * Método prepareText()
-     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem altera??o
+     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem alteração
      * recebe um texto e prepara para inserir no arquivo de texto
      */
     protected function prepareText($text, $remove = null)
     {
         $result = strtoupper($this->removeAccents(trim(html_entity_decode($text))));
-        if ($remove)
+        if ($remove) {
             $result = str_replace(str_split($remove), '', $result);
+        }
         return $result;
     }
 
-    /*
+    /**
      * Método removeAccents()
-     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem altera??o
+     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem alteração
      * recebe um texto e prepara para inserir no arquivo de texto
      */
     protected function removeAccents($string)
     {
-        return preg_replace(
-            array(
+        return preg_replace(array(
             '/\xc3[\x80-\x85]/',
             '/\xc3\x87/',
             '/\xc3[\x88-\x8b]/',
@@ -85,14 +86,13 @@ abstract class RegistroAbstract
             '/\xc3[\xa8-\xab]/',
             '/\xc3[\xac-\xaf]/',
             '/\xc3([\xb2-\xb6]|\xb8)/',
-            '/\xc3[\xb9-\xbc]/',
-            ), str_split('ACEIOUaceiou', 1), $this->isUtf8($string) ? $string : utf8_encode($string)
-        );
+            '/\xc3[\xb9-\xbc]/'
+        ), str_split('ACEIOUaceiou', 1), $this->isUtf8($string) ? $string : utf8_encode($string));
     }
 
-    /*
+    /**
      * Método removeAccents()
-     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem altera??o
+     * metodo retirado do projeto andersondanilo/CnabPHP e usado como esta sem alteração
      * recebe um texto e prepara para inserir no arquivo de texto
      */
     protected function isUtf8($string)
@@ -106,11 +106,10 @@ abstract class RegistroAbstract
             | \xF0[\x90-\xBF][\x80-\xBF]{2}
             | [\xF1-\xF3][\x80-\xBF]{3}
             | \xF4[\x80-\x8F][\x80-\xBF]{2}
-            )*$%xs', $string
-        );
+            )*$%xs', $string);
     }
 
-    /*
+    /**
      * Método getText()
      * metodo magico que trabalha recursivamente nos filhos e netos desse objeto
      * prepara as linhas para serem exportadas para txt
@@ -145,15 +144,15 @@ abstract class RegistroAbstract
         $diff = strlen($input) - mb_strlen($input);
         return str_pad($input, $pad_length + $diff, $pad_string, $pad_type);
     }
-        /**
+
+    /**
      * Método addChild()
      * Recebe os parametros abaixo e insere num array para uso fururo
+     *
      * @RegistroRemAbstract $child = recebe um filho de RegistroRemAbstract
      */
     public function addChild(RegistroRemAbstract $child)
     {
         $this->children[] = $child;
     }
-    
-
 }
