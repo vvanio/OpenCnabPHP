@@ -35,13 +35,14 @@ class Registro0 extends Generico0
 {
 
     /**
+     *
      * @var string
      */
     public $trailler;
 
     /**
      * Metadados do Registro
-     * 
+     *
      * @var array
      */
     protected $meta = array(
@@ -59,7 +60,7 @@ class Registro0 extends Generico0
         ),
         'tipo_registro' => array(
             'tamanho' => 1,
-            'default' => '1',
+            'default' => '0',
             'tipo' => 'int',
             'required' => true
         ),
@@ -81,10 +82,46 @@ class Registro0 extends Generico0
             'tipo' => 'int',
             'required' => true
         ),
-        'uso_caixa1' => array(
-            'tamanho' => 20,
+        'convenio_caixa' => array( // 07.0
+            'tamanho' => 6,
+            'default' => '',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'param_transmissao' => array( // 07.0
+            'tamanho' => 2,
             'default' => '0',
             'tipo' => 'int',
+            'required' => true
+        ),
+        'amb_cliente' => array( // 07.0
+            'tamanho' => 1,
+            'default' => 'T', // T teste e P producao
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'amb_caixa' => array( // 07.0
+            'tamanho' => 1,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'orig_app' => array( // 07.0
+            'tamanho' => 3,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'num_versao' => array( // 07.0
+            'tamanho' => 4,
+            'default' => '0',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler2' => array( // 07.0
+            'tamanho' => 3,
+            'default' => ' ',
+            'tipo' => 'alfa',
             'required' => true
         ),
         'agencia' => array(
@@ -99,16 +136,22 @@ class Registro0 extends Generico0
             'tipo' => 'int',
             'required' => true
         ),
-        'codigo_beneficiario' => array(
-            'tamanho' => 6,
-            'default' => '',
+        'conta' => array( // 10.0
+            'tamanho' => 12,
+            'default' => '0',
             'tipo' => 'int',
             'required' => true
         ),
-        'uso_caixa2' => array(
-            'tamanho' => 8,
-            'default' => '0',
-            'tipo' => 'int',
+        'conta_dv' => array( // 11.0
+            'tamanho' => 1,
+            'default' => '7',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler3' => array( // 12.0
+            'tamanho' => 1,
+            'default' => '',
+            'tipo' => 'alfa',
             'required' => true
         ),
         'nome_empresa' => array(
@@ -119,11 +162,11 @@ class Registro0 extends Generico0
         ),
         'nome_banco' => array(
             'tamanho' => 30,
-            'default' => '',
+            'default' => 'CAIXA',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'filler3' => array(
+        'filler4' => array( // 15.0
             'tamanho' => 10,
             'default' => ' ',
             'tipo' => 'alfa',
@@ -131,7 +174,7 @@ class Registro0 extends Generico0
         ),
         'codigo_remessa' => array(
             'tamanho' => 1,
-            'default' => '',
+            'default' => '1',
             'tipo' => 'int',
             'required' => true
         ),
@@ -155,36 +198,54 @@ class Registro0 extends Generico0
         ),
         'versao_layout' => array(
             'tamanho' => 3,
-            'default' => '',
+            'default' => '080',
             'tipo' => 'int',
             'required' => true
         ),
         'densidade_gravacao' => array(
             'tamanho' => 5,
-            'default' => '0',
+            'default' => '01600',
             'tipo' => 'int',
             'required' => true
         ),
-        'filler4' => array(
+        'filler5' => array( // 22.0
             'tamanho' => 20,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'situacao_arquivo' => array(
+        'reservado_empresa' => array( // 23.0
             'tamanho' => 20,
             'default' => '',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'versao_aplicativo' => array(
-            'tamanho' => 4,
+        'filler6' => array( // 24.0
+            'tamanho' => 11,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
-        'filler5' => array(
-            'tamanho' => 25,
+        'filler7' => array( // 24.0
+            'tamanho' => 3,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler8' => array( // 24.0
+            'tamanho' => 3,
+            'default' => '0',
+            'tipo' => 'int',
+            'required' => true
+        ),
+        'filler9' => array( // 24.0
+            'tamanho' => 2,
+            'default' => ' ',
+            'tipo' => 'alfa',
+            'required' => true
+        ),
+        'filler10' => array( // 24.0
+            'tamanho' => 10,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
@@ -206,14 +267,14 @@ class Registro0 extends Generico0
 
     /**
      * Método inserirDetalhe()
-     * 
      */
     public function inserirDetalhe()
     {
         while (RetornoAbstract::$linesCounter < (count(RetornoAbstract::$lines) - 4)) {
-            $class = 'CnabPHP\resources\\' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro1';
+
+            $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro1';
             $lote = new $class(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]);
-            $class = 'CnabPHP\resources\\' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro5';
+            $class = 'CnabPHP\resources\\B' . RetornoAbstract::$banco . '\retorno\\' . RetornoAbstract::$layout . '\Registro5';
             $lote->trailler = new $class(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]);
             $this->children[] = $lote;
         }

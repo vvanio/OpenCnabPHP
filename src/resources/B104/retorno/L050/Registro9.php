@@ -34,7 +34,7 @@ class Registro9 extends Generico9
 
     /**
      * Metadados do Registro
-     * 
+     *
      * @var array
      */
     protected $meta = array(
@@ -76,12 +76,12 @@ class Registro9 extends Generico9
         ),
         'filler2' => array( // 12.5
             'tamanho' => 6,
-            'default' => ' ',
-            'tipo' => 'alfa',
+            'default' => '0',
+            'tipo' => 'int',
             'required' => true
         ),
         'filler3' => array( // 13.5
-            'tamanho' => 105,
+            'tamanho' => 205,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true

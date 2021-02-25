@@ -349,38 +349,6 @@ class Registro3P extends Generico3
             'required' => true
         )
     );
-
-    /**
-     * Método __construct()
-     *
-     * @param array $data
-     *            - dados para criação do registro
-     */
-    public function __construct($data = null)
-    {
-        if (empty($this->data)) {
-            parent::__construct($data);
-        }
-        $this->inserirDetalhe($data);
-    }
-
-    /**
-     * Método inserirDetalhe()
-     *
-     * @param array $data
-     *            - dados para criação do registro
-     */
-    public function inserirDetalhe($data)
-    {
-        if ((int) $data['codigo_movimento'] != 2) {
-            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
-            $this->children[] = new $class($data);
-            if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
-                $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
-                $this->children[] = new $class($data);
-            }
-        }
-    }
     
     /**
      * Método set_nosso_numero()
@@ -413,6 +381,38 @@ class Registro3P extends Generico3
     protected function set_codigo_beneficiario_dv($value)
     {
         $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['conta_dv'];
+    }
+
+    /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
+     */
+    public function __construct($data = null)
+    {
+        if (empty($this->data)) {
+            parent::__construct($data);
+        }
+        $this->inserirDetalhe($data);
+    }
+
+    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
+     */
+    public function inserirDetalhe($data)
+    {
+        if ((int) $data['codigo_movimento'] != 2) {
+            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
+            $this->children[] = new $class($data);
+            if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
+                $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
+                $this->children[] = new $class($data);
+            }
+        }
     }
 
     /**

@@ -351,25 +351,6 @@ class Registro3P extends Generico3
         }
         $this->inserirDetalhe($data);
     }
-    
-    /**
-     * Método inserirDetalhe()
-     *
-     * @param array $data
-     *            - dados para criação do registro
-     */
-    public function inserirDetalhe($data)
-    {
-        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
-        $this->children[] = new $class($data);
-        // Chamar função para inserir nosso número
-        if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
-            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
-            $this->children[] = new $class($data);
-        }
-        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3S3';
-        $this->children[] = new $class($data);
-    }
 
     /**
      * Método set_nosso_numero_dv()
@@ -423,5 +404,24 @@ class Registro3P extends Generico3
         }
         ;
         return $Dv;
+    }
+    
+    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
+     */
+    public function inserirDetalhe($data)
+    {
+        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
+        $this->children[] = new $class($data);
+        // Chamar função para inserir nosso número
+        if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
+            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
+            $this->children[] = new $class($data);
+        }
+        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3S3';
+        $this->children[] = new $class($data);
     }
 }

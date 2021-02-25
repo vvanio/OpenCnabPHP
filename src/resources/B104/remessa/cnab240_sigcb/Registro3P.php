@@ -326,6 +326,28 @@ class Registro3P extends Generico3
         }
         $this->inserirDetalhe($data);
     }
+    
+    /**
+     * Método set_emissao_boleto()
+     * 
+     * @param string $value
+     * @throws Exception
+     */
+    protected function set_emissao_boleto($value)
+    {
+        $this->data['emissao_boleto'] = $value;
+        if ($this->data['nosso_numero'] == 0) {
+            $this->data['carteira'] = '00';
+        } elseif ($this->data['com_registro'] == 1 && $value == 1) {
+            $this->data['carteira'] = 11;
+        } elseif ($this->data['com_registro'] == 1 && $value == 2) {
+            $this->data['carteira'] = 14;
+        } elseif ($this->data['com_registro'] == 2 && $value == 1) {
+            $this->data['carteira'] = 21;
+        } else {
+            throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
+        }
+    }
 
     /**
      * Método inserirDetalhe()
@@ -360,28 +382,6 @@ class Registro3P extends Generico3
                     $this->children[] = new $class($data);
                 }
             }
-        }
-    }   
-    
-    /**
-     * Método set_emissao_boleto()
-     * 
-     * @param string $value
-     * @throws Exception
-     */
-    protected function set_emissao_boleto($value)
-    {
-        $this->data['emissao_boleto'] = $value;
-        if ($this->data['nosso_numero'] == 0) {
-            $this->data['carteira'] = '00';
-        } elseif ($this->data['com_registro'] == 1 && $value == 1) {
-            $this->data['carteira'] = 11;
-        } elseif ($this->data['com_registro'] == 1 && $value == 2) {
-            $this->data['carteira'] = 14;
-        } elseif ($this->data['com_registro'] == 2 && $value == 1) {
-            $this->data['carteira'] = 21;
-        } else {
-            throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
         }
     }
     

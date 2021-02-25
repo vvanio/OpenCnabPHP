@@ -34,7 +34,7 @@ class Registro5 extends Generico5
 
     /**
      * Metadados do Registro
-     * 
+     *
      * @var array
      */
     protected $meta = array(
@@ -68,53 +68,34 @@ class Registro5 extends Generico5
             'tipo' => 'int',
             'required' => true
         ),
-        'qtd_titulos_simples' => array( // 06.5
+        'somatorio_valores' => array( // 06.5
+            'tamanho' => 16,
+            'default' => '0',
+            'tipo' => 'decimal',
+            'precision' => 2,
+            'required' => true
+        ),
+        'somatorio_qtd_moedas' => array( // 07.5
+            'tamanho' => 13,
+            'default' => '0',
+            'tipo' => 'decimal',
+            'precision' => '5',
+            'required' => true
+        ),
+        'aviso_debito' => array( // 08.5
             'tamanho' => 6,
             'default' => '0',
             'tipo' => 'int',
-            'required' => true
-        ),
-        'vrl_titulos_simples' => array( // 07.5
-            'tamanho' => 15,
-            'default' => '0',
-            'tipo' => 'decimal',
-            'precision' => '2',
-            'required' => true
-        ),
-        'qtd_titulos_caucionada' => array( // 08.5
-            'tamanho' => 6,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ),
-        'vlr_titulos_caucionada' => array( // 09.5
-            'tamanho' => 15,
-            'default' => '0',
-            'tipo' => 'decimal',
-            'precision' => '2',
-            'required' => true
-        ),
-        'qtd_titulos_descontada' => array( // 10.5
-            'tamanho' => 6,
-            'default' => '0',
-            'tipo' => 'int',
-            'required' => true
-        ),
-        'vlr_titulos_descontada' => array( // 11.5
-            'tamanho' => 15,
-            'default' => '0',
-            'tipo' => 'decimal',
-            'precision' => '2',
             'required' => true
         ),
         'filler2' => array( // 12.5
-            'tamanho' => 31,
+            'tamanho' => 165,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true
         ),
         'filler3' => array( // 13.5
-            'tamanho' => 117,
+            'tamanho' => 10,
             'default' => ' ',
             'tipo' => 'alfa',
             'required' => true

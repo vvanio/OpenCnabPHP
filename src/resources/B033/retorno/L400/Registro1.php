@@ -333,7 +333,7 @@ class Registro1 extends Generico1
 
     /**
      * Método get_R3U()
-     * metodo que espõe esse registro como se fosse o R3U da caixa
+     * metodo que expõe esse registro como se fosse o R3U da caixa
      *
      * @return \CnabPHP\resources\B033\retorno\L400\Registro1
      */
