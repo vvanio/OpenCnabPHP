@@ -10,6 +10,9 @@ class Registro9 extends Generico9
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -63,6 +66,9 @@ class Registro9 extends Generico9
     );
 
     /**
+     *
+     * {@inheritdoc}
+     * @see \CnabPHP\resources\generico\remessa\cnab400\Generico9::set_mensagem_1()
      */
     protected function set_mensagem_1($value)
     {
@@ -70,6 +76,9 @@ class Registro9 extends Generico9
     }
 
     /**
+     *
+     * {@inheritdoc}
+     * @see \CnabPHP\resources\generico\remessa\cnab400\Generico9::set_mensagem_2()
      */
     protected function set_mensagem_2($value)
     {
@@ -77,6 +86,9 @@ class Registro9 extends Generico9
     }
 
     /**
+     *
+     * {@inheritdoc}
+     * @see \CnabPHP\resources\generico\remessa\cnab400\Generico9::set_mensagem_3()
      */
     protected function set_mensagem_3($value)
     {
@@ -84,6 +96,9 @@ class Registro9 extends Generico9
     }
 
     /**
+     *
+     * {@inheritdoc}
+     * @see \CnabPHP\resources\generico\remessa\cnab400\Generico9::set_mensagem_4()
      */
     protected function set_mensagem_4($value)
     {
@@ -91,6 +106,9 @@ class Registro9 extends Generico9
     }
 
     /**
+     *
+     * {@inheritdoc}
+     * @see \CnabPHP\resources\generico\remessa\cnab400\Generico9::set_mensagem_5()
      */
     protected function set_mensagem_5($value)
     {

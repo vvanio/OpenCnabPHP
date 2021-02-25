@@ -40,7 +40,7 @@ class Registro3T extends Generico3
      * Os códigos 03, 26 e 30 estão relacionados com a nota 40-a
      * Os códigos 06, 09 e 17 estão relacionados com a nota 40-c
      *
-     * @var type
+     * @var array
      */
     protected $descricaoMovimento = array(
         '033' => array(
@@ -176,6 +176,9 @@ class Registro3T extends Generico3
     );
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array(
@@ -358,6 +361,10 @@ class Registro3T extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -368,6 +375,10 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {
@@ -384,6 +395,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_data_ocorrencia()
+     *
+     * @return mixed
      */
     public function get_data_ocorrencia()
     {
@@ -392,6 +406,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_vlr_pago()
+     *
+     * @return mixed
      */
     public function get_vlr_pago()
     {
@@ -400,6 +417,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_codigo_movimento()
+     *
+     * @return mixed
      */
     public function get_codigo_movimento()
     {
@@ -408,10 +428,11 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_arrayOcorrencias()
      * Retorna um array com a lista das descrições de comando e detalhes do
      * comando para o movimento
      *
-     * @return array
+     * @return string[]|mixed[]
      */
     public function get_arrayOcorrencias()
     {

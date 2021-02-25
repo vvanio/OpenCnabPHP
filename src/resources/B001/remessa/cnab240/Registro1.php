@@ -25,10 +25,8 @@
  */
 namespace CnabPHP\resources\B001\remessa\cnab240;
 
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\resources\generico\remessa\cnab240\Generico1;
-use Exception;
 
 /**
  */
@@ -36,6 +34,9 @@ class Registro1 extends Generico1
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 01.1
@@ -201,8 +202,11 @@ class Registro1 extends Generico1
             'required' => true
         )
     );
-
+    
     /**
+     * Método set_carteira()
+     *
+     * @param mixed $value
      */
     protected function set_carteira($value)
     {
@@ -210,6 +214,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_convenio()
+     *
+     * @param mixed $value
      */
     protected function set_convenio($value)
     {
@@ -217,6 +224,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_situacao_arquivo()
+     *
+     * @param mixed $value
      */
     protected function set_situacao_arquivo($value)
     {

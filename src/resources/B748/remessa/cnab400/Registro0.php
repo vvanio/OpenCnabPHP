@@ -26,8 +26,8 @@
  */
 namespace CnabPHP\resources\B748\remessa\cnab400;
 
-use CnabPHP\resources\generico\remessa\cnab400\Generico0;
 use CnabPHP\RemessaAbstract;
+use CnabPHP\resources\generico\remessa\cnab400\Generico0;
 
 /**
  */
@@ -35,6 +35,9 @@ class Registro0 extends Generico0
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'identificacao_registro' => array(
@@ -136,6 +139,10 @@ class Registro0 extends Generico0
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -144,6 +151,8 @@ class Registro0 extends Generico0
     }
 
     /**
+     * {@inheritDoc}
+     * @see \CnabPHP\RegistroRemAbstract::getFileName()
      */
     public function getFileName()
     {

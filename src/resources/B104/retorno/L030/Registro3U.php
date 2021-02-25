@@ -25,9 +25,7 @@
  */
 namespace CnabPHP\resources\B104\retorno\L030;
 
-use CnabPHP\resources\generico\retorno\cnab240\Generico3;
-// use CnabPHP\RetornoAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 
 /**
  */
@@ -35,6 +33,9 @@ class Registro3U extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3Q

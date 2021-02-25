@@ -1,9 +1,8 @@
 <?php
 namespace CnabPHP\resources\B756\remessa\cnab400;
 
-use CnabPHP\resources\generico\remessa\cnab400\Generico1;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
+use CnabPHP\resources\generico\remessa\cnab400\Generico1;
 
 /**
  */
@@ -11,6 +10,9 @@ class Registro1 extends Generico1
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -358,6 +360,9 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método set_nosso_numero_dv()
+     *
+     * @param mixed $value
      */
     protected function set_nosso_numero_dv($value)
     {
@@ -366,6 +371,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_agencia_cobradora()
+     *
+     * @param mixed $value
      */
     protected function set_agencia_cobradora($value)
     {
@@ -373,6 +381,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_agencia_cobradora_dv()
+     *
+     * @param mixed $value
      */
     protected function set_agencia_cobradora_dv($value)
     {
@@ -380,22 +391,25 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método mod11()
      * Calcula e retorna o dígito verificador usando o algoritmo Modulo 11
      *
      * @param string $num
-     * @param int $base
-     * @return array Retorna um array com as chaves 'digito' e 'resto'
+     *
+     * @return string
      */
     protected static function mod11($num)
     {
-        $codigo_beneficiario = RemessaAbstract::$entryData['codigo_beneficiario'] . RemessaAbstract::$entryData['codigo_beneficiario_dv']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
-        $agencia = RemessaAbstract::$entryData['agencia']; // NÃºmero do contrato: Ã o mesmo nÃºmero da conta
+        $codigo_beneficiario = RemessaAbstract::$entryData['codigo_beneficiario'] . RemessaAbstract::$entryData['codigo_beneficiario_dv']; // Número do contrato: é o mesmo número da conta
+        $agencia = RemessaAbstract::$entryData['agencia']; // Número do contrato: é o mesmo número da conta
 
-        $NossoNumero = str_pad($num, 7, 0, STR_PAD_LEFT); // Até 7 dígitos, nÃºmero sequencial iniciado em 1 (Ex.: 1, 2...)
+        $NossoNumero = str_pad($num, 7, 0, STR_PAD_LEFT); // Até 7 dígitos, número sequencial iniciado em 1 (Ex.: 1, 2...)
         $qtde_nosso_numero = strlen($NossoNumero);
         $sequencia = str_pad($agencia, 4, STR_PAD_LEFT) . str_pad($codigo_beneficiario, 10, 0, STR_PAD_LEFT) . str_pad($NossoNumero, 7, 0, STR_PAD_LEFT);
         $cont = 0;
         $calculoDv = 0;
+        $result = [];
+
         for ($num = 0; $num < 21; $num ++) {
             $cont ++;
             if ($cont == 1) {

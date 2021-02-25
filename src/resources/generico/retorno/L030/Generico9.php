@@ -26,9 +26,9 @@
 namespace CnabPHP\resources\generico\retorno\L030;
 
 use CnabPHP\RegistroRetAbstract;
-use CnabPHP\RetornoAbstract;
-use Exception;
 
+/**
+ */
 class Generico9 extends RegistroRetAbstract
 {
     // protected function set_qtd_lotes($value)

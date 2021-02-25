@@ -27,7 +27,6 @@ namespace CnabPHP\resources\generico\remessa\cnab400;
 
 use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use Exception;
 
 /**
  */
@@ -35,6 +34,9 @@ class Generico2 extends RegistroRemAbstract
 {
 
     /**
+     * Método set_numero_registro()
+     *
+     * @param mixed $value
      */
     protected function set_numero_registro($value)
     {
@@ -43,6 +45,9 @@ class Generico2 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia()
+     *
+     * @param mixed $value
      */
     protected function set_agencia($value)
     {
@@ -50,6 +55,9 @@ class Generico2 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia_dv()
+     *
+     * @param mixed $value
      */
     protected function set_agencia_dv($value)
     {
@@ -57,6 +65,9 @@ class Generico2 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta()
+     *
+     * @param mixed $value
      */
     protected function set_conta($value)
     {
@@ -64,6 +75,9 @@ class Generico2 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta_dv()
+     *
+     * @param mixed $value
      */
     protected function set_conta_dv($value)
     {

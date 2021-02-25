@@ -26,17 +26,23 @@
 namespace CnabPHP\resources\generico\retorno\L030;
 
 use CnabPHP\RegistroRetAbstract;
-use CnabPHP\RemessaAbstract;
-use CnabPHP\Especie;
-use Exception;
 
+/**
+ */
 class Generico3 extends RegistroRetAbstract
 {
 
+    /**
+     * Método get_R3U()
+     * Metodo que retorna todos os filhos
+     *
+     * @return mixed
+     */
     public function get_R3U()
     {
         return $this->children[0];
     }
+    
     // protected function set_codigo_lote($value)
     // {
     // //ArquivoAbstract::$loteCounter++;

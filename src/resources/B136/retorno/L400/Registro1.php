@@ -33,10 +33,16 @@ use CnabPHP\RetornoAbstract;
 class Registro1 extends Generico1
 {
 
+    /**
+     *
+     * @var string
+     */
     public $trailler;
 
     /**
      * Posição 109 a 110 Códigos de Movimento:
+     *
+     * @var array
      */
     private $listaDescricaoMovimento = array(
         '01' => 'Pago (Título protestado pago em cartório)',
@@ -50,6 +56,8 @@ class Registro1 extends Generico1
 
     /**
      * Posição 319 a 326 Códigos de Complemento do Movimento:
+     *
+     * @var array
      */
     private $listaComplementoMovimento = array(
         '00' => 'Sem Complemento a informar.',
@@ -116,6 +124,8 @@ class Registro1 extends Generico1
 
     /**
      * Códigos de Complemento do Movimento, relacionados a Protesto de título:
+     *
+     * @var array
      */
     private $listaComplementoMovimentoProtesto = array(
         '101' => 'Data da apresentação inferior à data de vencimento.',
@@ -192,6 +202,8 @@ class Registro1 extends Generico1
 
     /**
      * Posição 327 a 328 Códigos de Tipo de Instrução Origem
+     *
+     * @var array
      */
     private $listaTipoTipoInstrucaoOrigem = [
         '01' => 'Remessa',
@@ -206,6 +218,9 @@ class Registro1 extends Generico1
     ];
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -446,6 +461,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function __construct($linhaTxt)
     {
@@ -455,9 +474,10 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método get_arrayOcorrencias()
      * Retorna um array contendo as descrições das ocorrências encontradas no layout
      *
-     * @return type
+     * @return array
      */
     public function get_arrayOcorrencias()
     {

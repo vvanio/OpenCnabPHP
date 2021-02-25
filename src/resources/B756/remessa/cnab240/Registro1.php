@@ -33,6 +33,9 @@ class Registro1 extends Generico1
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 01.1 -- 1-3

@@ -26,8 +26,7 @@
 namespace CnabPHP\resources\generico\remessa\cnab400;
 
 use CnabPHP\RegistroRemAbstract;
-use cnabPHP\RemessaAbstract;
-use Exception;
+use CnabPHP\RemessaAbstract;
 
 /**
  */
@@ -35,6 +34,10 @@ class Generico9 extends RegistroRemAbstract
 {
 
     /**
+     * Método set_numero_registro()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_registro($value)
     {
@@ -43,6 +46,10 @@ class Generico9 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_1()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_1($value)
     {
@@ -51,6 +58,10 @@ class Generico9 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_2()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_2($value)
     {
@@ -59,6 +70,10 @@ class Generico9 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_3()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_3($value)
     {
@@ -67,6 +82,10 @@ class Generico9 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_4()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_4($value)
     {
@@ -75,6 +94,10 @@ class Generico9 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_5()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_5($value)
     {

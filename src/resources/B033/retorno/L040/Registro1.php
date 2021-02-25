@@ -25,17 +25,23 @@
  */
 namespace CnabPHP\resources\B033\retorno\L040;
 
-use CnabPHP\resources\generico\retorno\L040\Generico1;
 use CnabPHP\RetornoAbstract;
+use CnabPHP\resources\generico\retorno\L040\Generico1;
 
 /**
  */
 class Registro1 extends Generico1
 {
 
+    /**
+     * @var string
+     */
     public $trailler;
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array(
@@ -173,6 +179,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function __construct($linhaTxt)
     {
@@ -180,10 +190,11 @@ class Registro1 extends Generico1
         $this->inserirDetalhe($linhaTxt);
     }
 
-    /*
-     * método inserirDetalhe()
-     * Recebe os parametros
-     * @$data = um array contendo os dados nessesarios para o arquvio
+    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($linhaTxt)
     {

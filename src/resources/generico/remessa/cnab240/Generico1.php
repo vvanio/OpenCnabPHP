@@ -34,9 +34,17 @@ use Exception;
 class Generico1 extends RegistroRemAbstract
 {
 
+    /**
+     *
+     * @var integer
+     */
     protected $counter = 0;
 
     /**
+     * Método set_codigo_lote()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_lote($value)
     {
@@ -44,6 +52,11 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_servico()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     public function set_tipo_servico($value)
     {
@@ -59,6 +72,11 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_inscricao()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_tipo_inscricao($value)
     {
@@ -71,6 +89,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao($value)
     {
@@ -90,6 +112,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_beneficiario()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_beneficiario($value)
     {
@@ -97,18 +123,33 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_beneficiario_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_beneficiario_dv($value)
     {
         $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['codigo_beneficiario_dv'];
     }
 
+    /**
+     * Método set_agencia()
+     *
+     *
+     * @param mixed $value
+     */
     protected function set_agencia($value)
     {
         $this->data['agencia'] = $value == '' ? RemessaAbstract::$entryData['agencia'] : $value;
     }
 
     /**
+     * Método set_agencia_dv()
+     *
+     *
+     *
+     * @param mixed $value
      */
     protected function set_agencia_dv($value)
     {
@@ -116,6 +157,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta($value)
     {
@@ -123,6 +168,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta_dv($value)
     {
@@ -130,6 +179,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_convenio()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_convenio($value)
     {
@@ -137,6 +190,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_nome_empresa()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_nome_empresa($value)
     {
@@ -144,6 +201,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_remessa()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_remessa($value)
     {
@@ -151,6 +212,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_3()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_3($value)
     {
@@ -159,6 +224,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_4()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_4($value)
     {
@@ -167,6 +236,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_data_gravacao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_data_gravacao($value)
     {
@@ -174,6 +247,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método get_counter()
+     *
+     *
+     * @return number
      */
     public function get_counter()
     {
@@ -182,6 +259,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     *
+     * @param mixed $data
      */
     public function inserirDetalhe($data)
     {
@@ -190,6 +271,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método inserirTransferencia()
+     *
+     *
+     * @param mixed $data
      */
     public function inserirTransferencia($data)
     {
@@ -198,6 +283,8 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * {@inheritdoc}
+     * @see \CnabPHP\RegistroAbstract::getText()
      */
     public function getText()
     {
@@ -210,7 +297,8 @@ class Generico1 extends RegistroRemAbstract
         $dataReg5['vlr_titulos_caucionada'] = '0.00';
         $dataReg5['vlr_titulos_descontada'] = '0.00';
 
-        foreach ($this->meta as $key => $value) {
+        //foreach ($this->meta as $key => $value) { tratar warning $value is never used
+        foreach (array_keys($this->meta) as $key) {
             $retorno .= $this->$key;
         }
         RemessaAbstract::$retorno[] = $retorno;

@@ -36,6 +36,10 @@ class Generico3 extends RegistroRemAbstract
 {
 
     /**
+     * Método set_codigo_lote()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_lote($value)
     {
@@ -44,6 +48,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_registro()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_registro($value)
     {
@@ -52,6 +60,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_tipo_inscricao($value)
     {
@@ -59,6 +71,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao($value)
     {
@@ -72,6 +88,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_beneficiario()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_beneficiario($value)
     {
@@ -79,6 +99,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_beneficiario_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_beneficiario_dv($value)
     {
@@ -86,6 +110,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_agencia($value)
     {
@@ -93,6 +121,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_agencia_dv($value)
     {
@@ -100,6 +132,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta($value)
     {
@@ -107,6 +143,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta_dv($value)
     {
@@ -114,6 +154,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_codigo_convenio()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_convenio($value)
     {
@@ -121,6 +165,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_com_registro()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_com_registro($value)
     {
@@ -129,6 +177,11 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_seu_numero()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_seu_numero($value)
     {
@@ -140,6 +193,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_seu_numero2()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_seu_numero2($value)
     {
@@ -147,6 +204,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_identificacao_contrato()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_identificacao_contrato($value)
     {
@@ -154,6 +215,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_especie_titulo()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_especie_titulo($value)
     {
@@ -166,6 +231,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_cep_sufixo()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_cep_sufixo($value)
     {
@@ -176,6 +245,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_3()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_3($value)
     {
@@ -184,6 +257,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_4()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_4($value)
     {
@@ -192,6 +269,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_5()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_5($value)
     {
@@ -200,6 +281,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_6()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_6($value)
     {
@@ -208,6 +293,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_7()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_7($value)
     {
@@ -216,6 +305,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_mensagem_8()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_mensagem_8($value)
     {
@@ -224,6 +317,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_informacao_pagador()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_informacao_pagador($value)
     {
@@ -232,6 +329,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_set_mensagem_5()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_set_mensagem_5($value)
     {
@@ -240,6 +341,10 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_set_mensagem_52()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_set_mensagem_52($value)
     {
@@ -248,6 +353,11 @@ class Generico3 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_prazo_protesto()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_prazo_protesto($value)
     {

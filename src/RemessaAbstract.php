@@ -181,7 +181,7 @@ abstract class RemessaAbstract
 
     /**
      * Método getLote()
-     * Metodo statico para pegar o objeto do lote
+     * Metodo estático para pegar o objeto do lote
      *
      * @param int $index
      *            - indice do lote , normalmente 1

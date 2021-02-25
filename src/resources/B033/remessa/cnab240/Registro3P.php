@@ -26,10 +26,8 @@
  */
 namespace CnabPHP\resources\B033\remessa\cnab240;
 
-use CnabPHP\resources\generico\remessa\cnab240\Generico3;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 
 /**
  */
@@ -37,6 +35,9 @@ class Registro3P extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array(
@@ -350,36 +351,10 @@ class Registro3P extends Generico3
     );
 
     /**
-     * Sobrescreve a informação do Nosso Número incluindo o DV ao final
+     * Método __construct()
      *
-     * @param int $value
-     */
-    protected function set_nosso_numero($value)
-    {
-        $this->data['nosso_numero'] = $value . self::modulo11($value);
-    }
-
-    /**
-     * Sobrescreve a informação do Beneficiário com os dados da Conta, orientações Santander
-     *
-     * @param int $value
-     */
-    protected function set_codigo_beneficiario($value)
-    {
-        $this->data['codigo_beneficiario'] = RemessaAbstract::$entryData['conta'];
-    }
-
-    /**
-     * Sobrescreve a informação do BeneficiárioDv com os dados da ContaDv, orientações Santander
-     *
-     * @param int $value
-     */
-    protected function set_codigo_beneficiario_dv($value)
-    {
-        $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['conta_dv'];
-    }
-
-    /**
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -390,6 +365,10 @@ class Registro3P extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {
@@ -402,17 +381,56 @@ class Registro3P extends Generico3
             }
         }
     }
+    
+    /**
+     * Método set_nosso_numero()
+     * Sobrescreve a informação do Nosso Número incluindo o DV ao final
+     *
+     * @param int $value
+     */
+    protected function set_nosso_numero($value)
+    {
+        $this->data['nosso_numero'] = $value . self::modulo11($value);
+    }
+    
+    /**
+     * Método set_codigo_beneficiario()
+     * Sobrescreve a informação do Beneficiário com os dados da Conta, orientações Santander
+     *
+     * @param int $value
+     */
+    protected function set_codigo_beneficiario($value)
+    {
+        $this->data['codigo_beneficiario'] = RemessaAbstract::$entryData['conta'];
+    }
+    
+    /**
+     * Método set_codigo_beneficiario_dv()
+     * Sobrescreve a informação do BeneficiárioDv com os dados da ContaDv, orientações Santander
+     *
+     * @param int $value
+     */
+    protected function set_codigo_beneficiario_dv($value)
+    {
+        $this->data['codigo_beneficiario_dv'] = RemessaAbstract::$entryData['conta_dv'];
+    }
 
     /**
+     * Método modulo11()
      * Cálculo do módulo 11
      *
-     * @param int $index
-     * @return int
+     * @param number $num
+     * @param number $base
+     * @param number $r
+     * 
+     * @return number
      */
     protected static function modulo11($num, $base = 9, $r = 0)
     {
         $soma = 0;
         $fator = 2;
+        $numeros = [];
+        $parcial = [];
 
         // Separacao dos numeros
         for ($i = strlen($num); $i > 0; $i --) {

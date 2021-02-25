@@ -26,10 +26,8 @@
  */
 namespace CnabPHP\resources\B756\remessa\cnab240;
 
-use CnabPHP\resources\generico\remessa\cnab240\Generico3;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 
 /**
  */
@@ -37,6 +35,9 @@ class Registro3P extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 01.3P -- 1-3
@@ -338,6 +339,10 @@ class Registro3P extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -346,8 +351,30 @@ class Registro3P extends Generico3
         }
         $this->inserirDetalhe($data);
     }
+    
+    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
+     */
+    public function inserirDetalhe($data)
+    {
+        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
+        $this->children[] = new $class($data);
+        // Chamar função para inserir nosso número
+        if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
+            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
+            $this->children[] = new $class($data);
+        }
+        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3S3';
+        $this->children[] = new $class($data);
+    }
 
     /**
+     * Método set_nosso_numero_dv()
+     * 
+     * @param mixed $value
      */
     protected function set_nosso_numero_dv($value)
     {
@@ -356,12 +383,19 @@ class Registro3P extends Generico3
     }
 
     /**
+     * Método modulo11()
+     * 
+     * @param string $index
+     * @param string $ag
+     * @param string $conv
+     * @return number
      */
     protected static function modulo11($index, $ag, $conv)
     {
         $sequencia = str_pad($ag, 4, 0, STR_PAD_LEFT) . str_pad($conv, 10, 0, STR_PAD_LEFT) . str_pad($index, 7, 0, STR_PAD_LEFT);
         $cont = 0;
         $calculoDv = 0;
+        
         for ($num = 0; $num <= strlen($sequencia); $num ++) {
             $cont ++;
             if ($cont == 1) {
@@ -380,6 +414,7 @@ class Registro3P extends Generico3
             }
             $calculoDv += ((int) substr($sequencia, $num, 1) * $constante);
         }
+        
         $Resto = $calculoDv % 11;
         if ($Resto == 0 || $Resto == 1) {
             $Dv = 0;
@@ -388,20 +423,5 @@ class Registro3P extends Generico3
         }
         ;
         return $Dv;
-    }
-
-    /**
-     */
-    public function inserirDetalhe($data)
-    {
-        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3Q';
-        $this->children[] = new $class($data);
-        // Chamar função para inserir nosso número
-        if (isset($data['codigo_desconto2']) || isset($data['codigo_desconto3']) || isset($data['vlr_multa']) || isset($data['informacao_pagador'])) {
-            $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3R';
-            $this->children[] = new $class($data);
-        }
-        $class = 'CnabPHP\resources\\B' . RemessaAbstract::$banco . '\remessa\\' . RemessaAbstract::$layout . '\Registro3S3';
-        $this->children[] = new $class($data);
     }
 }

@@ -33,9 +33,15 @@ use CnabPHP\RetornoAbstract;
 class Registro1 extends Generico1
 {
 
+    /**
+     * @var string
+     */
     public $trailler;
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 01.1
@@ -203,6 +209,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function __construct($linhaTxt)
     {
@@ -210,10 +220,11 @@ class Registro1 extends Generico1
         $this->inserirDetalhe($linhaTxt);
     }
 
-    /*
-     * método inserirDetalhe()
-     * Recebe os parametros
-     * @$data = um array contendo os dados nessesarios para o arquvio
+    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($linhaTxt)
     {

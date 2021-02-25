@@ -1,8 +1,6 @@
 <?php
 namespace CnabPHP\resources\B084\remessa\cnab400;
 
-use CnabPHP\RegistroRemAbstract;
-use CnabPHP\RemessaAbstract;
 use CnabPHP\resources\generico\remessa\cnab400\Generico1;
 
 /**
@@ -11,6 +9,9 @@ class Registro1 extends Generico1
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -316,12 +317,22 @@ class Registro1 extends Generico1
         )
     );
 
+    /**
+     * Método set_taxa_multa()
+     *
+     * @param mixed $value
+     */
     protected function set_taxa_multa($value)
     {
         $this->data['taxa_multa'] = $value;
         $this->data['codigo_multa'] = ($value > 0) ? 2 : 0;
     }
 
+    /**
+     * Método set_nosso_numero_dv()
+     *
+     * @param mixed $value
+     */
     protected function set_nosso_numero_dv($value)
     {
         $modulo11 = self::modulo11(str_pad($this->entryData['carteira_banco'], 2, 0, STR_PAD_LEFT) . str_pad($this->data['nosso_numero'], 11, 0, STR_PAD_LEFT), 7);
@@ -337,11 +348,22 @@ class Registro1 extends Generico1
         }
     }
 
+    /**
+     * Método modulo11()
+     * Cálculo do módulo 11
+     * 
+     * @param number $num
+     * @param number $base
+     * 
+     * @return number[]
+     */
     protected static function modulo11($num, $base = 9)
     {
         $fator = 2;
-
         $soma = 0;
+        $numeros = [];
+        $parcial = [];
+                
         // Separacao dos numeros.
         for ($i = strlen($num); $i > 0; $i --) {
             // Pega cada numero isoladamente.
@@ -356,6 +378,8 @@ class Registro1 extends Generico1
             }
             $fator ++;
         }
+        
+        // Calculo do modulo 11
         $result = array(
             'digito' => ($soma * 10) % 11,
             // Remainder.

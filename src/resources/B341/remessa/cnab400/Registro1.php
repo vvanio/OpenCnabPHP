@@ -1,18 +1,23 @@
 <?php
 namespace CnabPHP\resources\B341\remessa\cnab400;
 
-use CnabPHP\resources\generico\remessa\cnab400\Generico1;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
+use CnabPHP\resources\generico\remessa\cnab400\Generico1;
 
 /**
  */
 class Registro1 extends Generico1
 {
 
+    /**
+     * @var string
+     */
     public $protestar;
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -300,6 +305,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -310,6 +319,10 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método inserirMulta()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirMulta($data)
     {

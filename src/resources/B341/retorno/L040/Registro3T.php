@@ -25,9 +25,8 @@
  */
 namespace CnabPHP\resources\B341\retorno\L040;
 
-use CnabPHP\resources\generico\retorno\L040\Generico3;
 use CnabPHP\RetornoAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\retorno\L040\Generico3;
 
 /**
  */
@@ -35,6 +34,9 @@ class Registro3T extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3P
@@ -263,6 +265,10 @@ class Registro3T extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -273,6 +279,10 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {

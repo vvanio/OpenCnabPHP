@@ -25,9 +25,8 @@
  */
 namespace CnabPHP\resources\B001\remessa\cnab240;
 
-use CnabPHP\resources\generico\remessa\cnab240\Generico3;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 use Exception;
 
 /**
@@ -36,6 +35,9 @@ class Registro3P extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3P
@@ -299,6 +301,10 @@ class Registro3P extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -309,22 +315,10 @@ class Registro3P extends Generico3
     }
 
     /**
-     */
-    protected function set_emissao_boleto($value)
-    {
-        $this->data['emissao_boleto'] = $value;
-        if ($this->data['com_registro'] == 1 && $value == 1) {
-            $this->data['carteira'] = 11;
-        } elseif ($this->data['com_registro'] == 1 && $value == 2) {
-            $this->data['carteira'] = 14;
-        } elseif ($this->data['com_registro'] == 2 && $value == 1) {
-            $this->data['carteira'] = 21;
-        } else {
-            throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
-        }
-    }
-
-    /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {
@@ -355,8 +349,32 @@ class Registro3P extends Generico3
             }
         }
     }
+    
+    /**
+     * Método set_emissao_boleto()
+     * 
+     * @param mixed $value
+     * @throws Exception
+     */
+    protected function set_emissao_boleto($value)
+    {
+        $this->data['emissao_boleto'] = $value;
+        if ($this->data['com_registro'] == 1 && $value == 1) {
+            $this->data['carteira'] = 11;
+        } elseif ($this->data['com_registro'] == 1 && $value == 2) {
+            $this->data['carteira'] = 14;
+        } elseif ($this->data['com_registro'] == 2 && $value == 1) {
+            $this->data['carteira'] = 21;
+        } else {
+            throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
+        }
+    }
 
     /**
+     * Método set_nosso_numero()
+     * 
+     * @param mixed $data
+     * @throws Exception
      */
     protected function set_nosso_numero($data)
     {
@@ -404,15 +422,21 @@ class Registro3P extends Generico3
     }
 
     /**
+     * Método modulo11()
      * Cálculo do módulo 11
      *
-     * @param int $index
-     * @return int
+     * @param number $num
+     * @param number $base
+     * @param number $r
+     * 
+     * @return number
      */
     protected static function modulo11($num, $base = 9, $r = 0)
     {
         $soma = 0;
         $fator = 2;
+        $numeros = [];
+        $parcial = [];
 
         // Separacao dos numeros
         for ($i = strlen($num); $i > 0; $i --) {

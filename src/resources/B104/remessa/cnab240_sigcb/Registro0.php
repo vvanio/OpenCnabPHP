@@ -26,7 +26,6 @@
 namespace CnabPHP\resources\B104\remessa\cnab240_SIGCB;
 
 use CnabPHP\resources\generico\remessa\cnab240\Generico0;
-use Exception;
 
 /**
  */
@@ -34,6 +33,9 @@ class Registro0 extends Generico0
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array(

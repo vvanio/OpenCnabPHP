@@ -27,7 +27,6 @@ namespace CnabPHP\resources\generico\remessa\cnab240;
 
 use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use Exception;
 
 /**
  */
@@ -35,6 +34,10 @@ class Generico5 extends RegistroRemAbstract
 {
 
     /**
+     * Método set_codigo_lote()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_codigo_lote($value)
     {
@@ -43,6 +46,10 @@ class Generico5 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_qtd_registros()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_qtd_registros($value)
     {

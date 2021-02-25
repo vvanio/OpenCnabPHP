@@ -26,7 +26,6 @@
 namespace CnabPHP\resources\B104\retorno\L050;
 
 use CnabPHP\resources\generico\retorno\L050\Generico9;
-use CnabPHP\Exception;
 
 /**
  */
@@ -34,6 +33,9 @@ class Registro9 extends Generico9
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 01.5

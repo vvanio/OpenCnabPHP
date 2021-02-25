@@ -34,9 +34,17 @@ use Exception;
 class Generico0 extends RegistroRemAbstract
 {
 
+    /**
+     *
+     * @var integer
+     */
     protected $counter;
 
     /**
+     * Método inserirDetalhe()
+     *
+     *
+     * @param mixed $data
      */
     public function inserirDetalhe($data)
     {
@@ -45,6 +53,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_situacao_arquivo()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_situacao_arquivo($value)
     {
@@ -52,6 +64,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_data_geracao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_data_geracao($value)
     {
@@ -59,6 +75,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_hora_geracao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_hora_geracao($value)
     {
@@ -66,6 +86,11 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_inscricao()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_tipo_inscricao($value)
     {
@@ -77,6 +102,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao($value)
     {
@@ -90,6 +119,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_convenio()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_convenio($value)
     {
@@ -97,6 +130,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método get_numero_registro()
+     *
+     *
+     * @return NULL
      */
     public function get_numero_registro()
     {
@@ -104,6 +141,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método get_counter()
+     *
+     *
+     * @return number
      */
     public function get_counter()
     {

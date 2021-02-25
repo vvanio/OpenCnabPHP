@@ -33,6 +33,9 @@ class Registro0 extends Generico0
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         // controle
@@ -171,6 +174,8 @@ class Registro0 extends Generico0
     );
 
     /**
+     * {@inheritDoc}
+     * @see \CnabPHP\RegistroRemAbstract::getFileName()
      */
     public function getFileName()
     {

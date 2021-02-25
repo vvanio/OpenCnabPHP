@@ -33,9 +33,15 @@ use CnabPHP\RetornoAbstract;
 class Registro0 extends Generico0
 {
 
+    /**
+     * @var string
+     */
     public $trailler;
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -135,14 +141,23 @@ class Registro0 extends Generico0
             'required' => true
         )
     );
-
+    
+    /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
+     */
     public function __construct($linhaTxt)
     {
         parent::__construct($linhaTxt);
         RetornoAbstract::$linesCounter ++;
         $this->inserirDetalhe();
     }
-
+    
+    /**
+     * Método inserirDetalhe()
+     */
     public function inserirDetalhe()
     {
         while (RetornoAbstract::$linesCounter < (count(RetornoAbstract::$lines) - 2)) {

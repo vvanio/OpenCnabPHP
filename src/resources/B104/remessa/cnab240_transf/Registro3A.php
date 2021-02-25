@@ -26,10 +26,8 @@
  */
 namespace CnabPHP\resources\B104\remessa\cnab240_transf;
 
-use CnabPHP\resources\generico\remessa\cnab240\Generico3;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use Exception;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 
 /**
  */
@@ -37,6 +35,9 @@ class Registro3A extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3A
@@ -261,6 +262,10 @@ class Registro3A extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -271,6 +276,10 @@ class Registro3A extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {
@@ -279,15 +288,21 @@ class Registro3A extends Generico3
     }
 
     /**
+     * Método modulo11()
      * Cálculo do módulo 11
      *
-     * @param int $index
-     * @return int
+     * @param number $num
+     * @param number $base
+     * @param number $r
+     * 
+     * @return number
      */
     protected static function modulo11($num, $base = 9, $r = 0)
     {
         $soma = 0;
         $fator = 2;
+        $numeros = [];
+        $parcial = [];
 
         // Separacao dos numeros
         for ($i = strlen($num); $i > 0; $i --) {

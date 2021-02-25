@@ -9,6 +9,9 @@ class Registro9 extends Generico9
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(

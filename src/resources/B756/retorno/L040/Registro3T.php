@@ -25,9 +25,8 @@
  */
 namespace CnabPHP\resources\B756\retorno\L040;
 
-use CnabPHP\resources\generico\retorno\L040\Generico3;
 use CnabPHP\RetornoAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\retorno\L040\Generico3;
 
 /**
  */
@@ -35,6 +34,9 @@ class Registro3T extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3T
@@ -218,6 +220,10 @@ class Registro3T extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -228,6 +234,10 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {
@@ -248,6 +258,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_data_ocorrencia()
+     * 
+     * @return mixed
      */
     public function get_data_ocorrencia()
     {
@@ -256,6 +269,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_vlr_pago()
+     * 
+     * @return mixed
      */
     public function get_vlr_pago()
     {
@@ -264,6 +280,9 @@ class Registro3T extends Generico3
     }
 
     /**
+     * Método get_codigo_movimento()
+     * 
+     * @return mixed
      */
     public function get_codigo_movimento()
     {

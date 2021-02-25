@@ -25,10 +25,8 @@
  */
 namespace CnabPHP\resources\B341\remessa\cnab240;
 
-use CnabPHP\resources\generico\remessa\cnab240\Generico3;
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use CnabPHP\Exception;
+use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 
 /**
  */
@@ -36,6 +34,9 @@ class Registro3P extends Generico3
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array( // 1.3P
@@ -301,6 +302,10 @@ class Registro3P extends Generico3
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -311,6 +316,10 @@ class Registro3P extends Generico3
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function inserirDetalhe($data)
     {

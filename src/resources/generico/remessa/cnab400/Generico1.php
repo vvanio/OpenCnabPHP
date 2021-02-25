@@ -36,6 +36,10 @@ class Generico1 extends RegistroRemAbstract
 {
 
     /**
+     * Método set_numero_registro()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_registro($value)
     {
@@ -44,6 +48,11 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_inscricao_empresa()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_tipo_inscricao_empresa($value)
     {
@@ -56,6 +65,11 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_tipo_inscricao()
+     *
+     *
+     * @param mixed $value
+     * @throws Exception
      */
     protected function set_tipo_inscricao($value)
     {
@@ -67,6 +81,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao_empresa()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao_empresa($value)
     {
@@ -80,6 +98,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao($value)
     {
@@ -93,6 +115,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_agencia($value)
     {
@@ -100,6 +126,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_agencia_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_agencia_dv($value)
     {
@@ -107,6 +137,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta($value)
     {
@@ -114,6 +148,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_conta_dv()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_conta_dv($value)
     {
@@ -121,6 +159,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_cep_pagador()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_cep_pagador($value)
     {
@@ -130,6 +172,10 @@ class Generico1 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_especie_titulo()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_especie_titulo($value)
     {

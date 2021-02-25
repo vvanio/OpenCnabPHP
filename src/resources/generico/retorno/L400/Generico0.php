@@ -26,11 +26,21 @@
 namespace CnabPHP\resources\generico\retorno\L400;
 
 use CnabPHP\RegistroRetAbstract;
-use Exception;
 
+/**
+ */
 class Generico0 extends RegistroRetAbstract
 {
 
+    /**
+     * Método getRegistros()
+     * 
+     *
+     * @param int $index
+     *            - indice do lote , normalmente 1
+     *
+     * @return array RegistroRetAbstract
+     */
     public function getRegistros($lote = 1)
     {
         // $lote = $this->children[$lote-1];

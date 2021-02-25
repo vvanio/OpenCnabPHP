@@ -32,6 +32,11 @@ use CnabPHP\resources\generico\retorno\L040\Generico9;
 class Registro9 extends Generico9
 {
 
+    /**
+     * Metadados do Registro
+     *
+     * @var array
+     */
     protected $meta = array(
         'codigo_banco' => array(
             'tamanho' => 3,

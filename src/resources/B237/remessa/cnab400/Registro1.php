@@ -1,7 +1,6 @@
 <?php
 namespace CnabPHP\resources\B237\remessa\cnab400;
 
-use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
 use CnabPHP\resources\generico\remessa\cnab400\Generico1;
 
@@ -11,6 +10,9 @@ class Registro1 extends Generico1
 {
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -311,6 +313,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
@@ -321,6 +327,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método inserirMensagem()
+     * 
+     * @param mixed $data
      */
     public function inserirMensagem($data)
     {
@@ -331,6 +340,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_endereco_pagador()
+     * 
+     * @param mixed $value
      */
     protected function set_endereco_pagador($value)
     {
@@ -338,6 +350,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_taxa_multa()
+     * 
+     * @param mixed $value
      */
     protected function set_taxa_multa($value)
     {
@@ -346,6 +361,9 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método set_nosso_numero_dv()
+     * 
+     * @param mixed $value
      */
     protected function set_nosso_numero_dv($value)
     {
@@ -363,12 +381,20 @@ class Registro1 extends Generico1
     }
 
     /**
+     * Método modulo11()
+     * Cálculo do Módulo 11
+     * 
+     * @param number $num
+     * @param number $base
+     * @return number[]
      */
     protected static function modulo11($num, $base = 9)
     {
         $fator = 2;
-
         $soma = 0;
+        $numeros = [];
+        $parcial = [];
+        
         // Separacao dos numeros.
         for ($i = strlen($num); $i > 0; $i --) {
             // Pega cada numero isoladamente.
@@ -383,6 +409,7 @@ class Registro1 extends Generico1
             }
             $fator ++;
         }
+        // Cálculo do Módulo 11
         $result = array(
             'digito' => ($soma * 10) % 11,
             // Remainder.

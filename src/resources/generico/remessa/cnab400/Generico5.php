@@ -25,8 +25,7 @@
  */
 namespace rctnet\resources\generico\remessa\cnab400;
 
-use cnabPHP\RegistroRemAbstract;
-use Exception;
+use CnabPHP\RegistroRemAbstract;
 
 /**
  */

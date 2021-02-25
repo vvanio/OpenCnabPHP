@@ -10,6 +10,9 @@ class Registro9 extends Generico9
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -51,6 +54,9 @@ class Registro9 extends Generico9
     );
 
     /**
+     * Método set_codigo_beneficiario()
+     * 
+     * @param mixed $value
      */
     protected function set_codigo_beneficiario($value)
     {

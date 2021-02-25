@@ -33,6 +33,9 @@ class Registro5 extends Generico5
 {
 
     /**
+     * Metadados do Registro
+     *
+     * @var array
      */
     protected $meta = array(
         'codigo_banco' => array(

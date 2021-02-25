@@ -145,10 +145,13 @@ abstract class RetornoAbstract
     }
 
     /**
-     * Método getLote()
+     * Método getRegistros()
      * Metodo estático para pegar o objeto do lote
      *
-     * @$index = o indice do lote , normalmente 1
+     * @param int $index
+     *            - indice do lote , normalmente 1
+     *            
+     * @return RegistroRetAbstract
      */
     public function getRegistros($lote = 1)
     {
@@ -159,6 +162,8 @@ abstract class RetornoAbstract
     /**
      * Método getChilds()
      * Metodo que retorna todos os filhos
+     * 
+     * @return array RegistroRetAbstract
      */
     public function getChilds()
     {
@@ -167,10 +172,13 @@ abstract class RetornoAbstract
     }
 
     /**
+     * Método getChild()
      * Retorna um filho específico
      *
-     * @param int $index
-     * @return
+     * @param number $index
+     *            - indice do filho
+     * 
+     * @return array RegistroRetAbstract
      */
     public function getChild($index = 0)
     {
@@ -179,7 +187,8 @@ abstract class RetornoAbstract
     }
 
     /**
-     * Retorna o a versão do layout
+     * Método getLayout()
+     * Retorna a versão do layout
      *
      * @return string
      */
@@ -190,7 +199,8 @@ abstract class RetornoAbstract
     }
 
     /**
-     * Retorna o a versão do layout
+     * Método getRegistrosRaiz()
+     * Retorna os registros do arquivo
      *
      * @return string
      */

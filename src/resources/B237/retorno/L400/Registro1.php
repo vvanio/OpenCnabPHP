@@ -26,17 +26,22 @@
  */
 namespace CnabPHP\resources\B237\retorno\L400;
 
-use CnabPHP\resources\generico\retorno\L400\Generico1;
 use CnabPHP\RetornoAbstract;
+use CnabPHP\resources\generico\retorno\L400\Generico1;
 
 /**
  */
 class Registro1 extends Generico1
 {
-
+    /**
+     * @var string
+     */
     public $trailler;
 
     /**
+     * Metadados do Registro
+     * 
+     * @var array
      */
     protected $meta = array(
         'tipo_registro' => array(
@@ -340,6 +345,10 @@ class Registro1 extends Generico1
     );
 
     /**
+     * Método __construct()
+     *
+     * @param array $linhaTxt
+     *            - dados para criação do registro
      */
     public function __construct($linhaTxt)
     {
@@ -349,18 +358,22 @@ class Registro1 extends Generico1
         // $this->inserirDetalhe();
     }
 
-    /*
-     * metodo get_R3U
+    /**
+     * Método get_R3U()
      * metodo que espõe esse registro como se fosse o R3U da caixa
+     *
+     * @return \CnabPHP\resources\B237\retorno\L400\Registro1
      */
     public function get_R3U()
     {
         return $this;
     }
 
-    /*
-     * metodo get_vlr_liquido
+    /**
+     * Método get_vlr_liquido() 
      * metodo que espõe esse vlr_liquido como se fosse o da caixa
+     *
+     * @return mixed
      */
     public function get_vlr_liquido()
     {

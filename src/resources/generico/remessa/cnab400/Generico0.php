@@ -27,16 +27,23 @@ namespace CnabPHP\resources\generico\remessa\cnab400;
 
 use CnabPHP\RegistroRemAbstract;
 use CnabPHP\RemessaAbstract;
-use Exception;
 
 /**
  */
 class Generico0 extends RegistroRemAbstract
 {
 
+    /**
+     *
+     * @var integer
+     */
     protected $counter = 1;
 
     /**
+     * Método get_counter()
+     *
+     *
+     * @return number
      */
     public function get_counter()
     {
@@ -45,6 +52,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método inserirDetalhe()
+     *
+     *
+     * @param mixed $data
      */
     public function inserirDetalhe($data)
     {
@@ -53,6 +64,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_data_gravacao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_data_gravacao($value)
     {
@@ -60,6 +75,10 @@ class Generico0 extends RegistroRemAbstract
     }
 
     /**
+     * Método set_numero_inscricao()
+     *
+     *
+     * @param mixed $value
      */
     protected function set_numero_inscricao($value)
     {
