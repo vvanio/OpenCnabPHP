@@ -25,8 +25,6 @@
  */
 namespace CnabPHP;
 
-use CnabPHP\RetornoAbstract;
-use CnabPHP;
 
 /**
  */
@@ -34,6 +32,10 @@ class Retorno extends RetornoAbstract
 {
 
     /**
+     * método __construct()
+     * Recebe os parametros
+     * 
+     * @param string $conteudo
      */
     public function __construct($conteudo)
     {

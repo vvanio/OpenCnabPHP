@@ -29,28 +29,581 @@ namespace CnabPHP;
  */
 class Especie
 {
-
-    private $res = array();
-
+    /**
+     * @var array
+     */
     private $itau = array();
 
+    /**
+     * @var array
+     */
     private $caixa = array();
 
+    /**
+     * @var array
+     */
     private $bb = array();
 
+    /**
+     * @var array
+     */
     private $siccob = array();
 
+    /**
+     * @var array
+     */
     private $sicredi = array();
 
+    /**
+     * @var array
+     */
     private $bradesco = array();
 
+    /**
+     * @var array
+     */
     private $santander = array();
-
+    
+    /**
+     * @var array
+     */
+    private $res = array();
+    
+    /**
+     * @var string
+     */
     private $banco;
 
     /**
+     * 
+     * @param string $banco
      */
     public function __construct($banco = null)
+    {
+        $this->setEspecies();
+        $this->setRes();
+        //
+        $this->banco = $this->res[$banco];
+    }
+    
+
+    
+    /**
+     * Método getAbr()
+     *
+     *
+     * @param string $especie
+     *
+     * @return string
+     */
+    public function getAbr($especie)
+    {
+        return $this->banco[$especie]['abr'];
+    }
+    
+    /**
+     * Método getBanco()
+     *
+     *
+     * @return string
+     */
+    public function getBanco()
+    {
+        return $this->banco;
+    }
+    
+    /**
+     * Método getCodigo()
+     *
+     *
+     * @param string $abr
+     * @return mixed
+     */
+    public function getCodigo($abr)
+    {
+        foreach ($this->banco as $key => $especie) {
+            if ($especie['abr'] == $abr) {
+                return $key;
+            }
+        }
+    }
+    
+    /**
+     * Método setEspecies()
+     *
+     */
+    public function setEspecies()
+    {
+        //
+        $this->setEspeciesBB();
+        $this->setEspeciesCEF();
+        $this->etEspeciesItau();
+        $this->setEspeciesSICOOB();
+        $this->setEspeciesSICREDI();
+        $this->setEspeciesSantander();
+        $this->setEspeciesBradesco();
+        $this->setEspeciesBradesco();
+    }
+    
+    /**
+     * Método setRes()
+     *
+     */
+    public function setRes()
+    {
+        //
+        $this->res['104'] = $this->caixa;
+        $this->res['341'] = $this->itau;
+        $this->res['001'] = $this->bb;
+        $this->res['237'] = $this->bradesco;
+        $this->res['756'] = $this->sicoob;
+        $this->res['748'] = $this->sicredi;
+        $this->res['033'] = $this->santander;
+        $this->res['084'] = $this->bradesco;
+    }
+    
+    /**
+     * Método setEspeciesSantander()
+     *
+     */
+    private function setEspeciesSantander()
+    {
+        $this->santander[1] = array(
+            'abr' => "DM",
+            'txt' => 'Duplicata Mercantil'
+        );
+        $this->santander[2] = array(
+            'abr' => "NP",
+            'txt' => 'Nota Promissória'
+        );
+        $this->santander[3] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->santander[5] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->santander[6] = array(
+            'abr' => "DR",
+            'txt' => 'Duplicata Rural'
+        );
+        $this->santander[8] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de Câmbio'
+        );
+        $this->santander[9] = array(
+            'abr' => "WRT",
+            'txt' => 'Warrant'
+        );
+        $this->santander[10] = array(
+            'abr' => "CH",
+            'txt' => 'Cheque'
+        );
+        $this->santander[12] = array(
+            'abr' => "DS",
+            'txt' => 'Duplicata de Serviço'
+        );
+        $this->santander[13] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de Débito'
+        );
+        $this->santander[14] = array(
+            'abr' => "TM",
+            'txt' => 'Triplicata Mercantil'
+        );
+        $this->santander[15] = array(
+            'abr' => "TS",
+            'txt' => 'Triplicata de Serviço'
+        );
+        $this->santander[18] = array(
+            'abr' => "FAT",
+            'txt' => 'Fatura'
+        );
+        $this->santander[20] = array(
+            'abr' => "AP",
+            'txt' => 'Apólice de Seguros'
+        );
+        $this->santander[21] = array(
+            'abr' => "ME",
+            'txt' => 'Mensalidade escolar'
+        );
+        $this->santander[22] = array(
+            'abr' => "ME",
+            'txt' => 'Parcela de ConsÃ³rcio'
+        );
+        $this->santander[99] = array(
+            'abr' => "DIV",
+            'txt' => 'Outros'
+        );
+    }
+
+    /**
+     * Método setEspeciesSICREDI()
+     * 
+     */
+    private function setEspeciesSICREDI()
+    {
+        // SICRED
+        $this->sicredi['A'] = array(
+            'abr' => "DMI",
+            'txt' => 'Duplicata Mercantil por Indicação'
+        );
+        $this->sicredi['B'] = array(
+            'abr' => "DR",
+            'txt' => 'Duplicata Rural'
+        );
+        $this->sicredi['C'] = array(
+            'abr' => "NP",
+            'txt' => 'Nota Promissória'
+        );
+        $this->sicredi['D'] = array(
+            'abr' => "NR",
+            'txt' => 'Nota Promissória Rural'
+        );
+        $this->sicredi['E'] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->sicredi['G'] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->sicredi['H'] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de Câmbio'
+        );
+        $this->sicredi['I'] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de Débito'
+        );
+        $this->sicredi['J'] = array(
+            'abr' => "TS",
+            'txt' => 'Triplicata de Serviço'
+        );
+        $this->sicredi['K'] = array(
+            'abr' => "DIV",
+            'txt' => 'Outros'
+        );
+    }
+
+    /**
+     * Método setEspeciesSICOOB()
+     * 
+     */
+    private function setEspeciesSICOOB()
+    {
+        // SICOOB
+        $this->sicoob[1] = array(
+            'abr' => "DM",
+            'txt' => 'Duplicata Mercantil'
+        );
+        $this->sicoob[2] = array(
+            'abr' => "NP",
+            'txt' => 'Nota Promissória'
+        );
+        $this->sicoob[3] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->sicoob[5] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->sicoob[6] = array(
+            'abr' => "DR",
+            'txt' => 'Duplicata Rural'
+        );
+        $this->sicoob[8] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de Câmbio'
+        );
+        $this->sicoob[9] = array(
+            'abr' => "WRT",
+            'txt' => 'Warrant'
+        );
+        $this->sicoob[10] = array(
+            'abr' => "CH",
+            'txt' => 'Cheque'
+        );
+        $this->sicoob[12] = array(
+            'abr' => "DS",
+            'txt' => 'Duplicata de Serviço'
+        );
+        $this->sicoob[13] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de Débito'
+        );
+        $this->sicoob[14] = array(
+            'abr' => "TM",
+            'txt' => 'Triplicata Mercantil'
+        );
+        $this->sicoob[15] = array(
+            'abr' => "TS",
+            'txt' => 'Triplicata de Serviço'
+        );
+        $this->sicoob[18] = array(
+            'abr' => "FAT",
+            'txt' => 'Fatura'
+        );
+        $this->sicoob[20] = array(
+            'abr' => "AP",
+            'txt' => 'Apólice de Seguros'
+        );
+        $this->sicoob[21] = array(
+            'abr' => "ME",
+            'txt' => 'Mensalidade escolar'
+        );
+        $this->sicoob[22] = array(
+            'abr' => "ME",
+            'txt' => 'Parcela de ConsÃ³rcio'
+        );
+        $this->sicoob[99] = array(
+            'abr' => "DIV",
+            'txt' => 'Outros'
+        );
+    }
+
+    /**
+     * Método setEspeciesItau()
+     * 
+     */
+    private function setEspeciesItau()
+    {
+        // Itau
+        $this->itau[1] = array(
+            'abr' => "DM",
+            'txt' => 'Duplicata Mercantil'
+        );
+        $this->itau[2] = array(
+            'abr' => "NP",
+            'txt' => 'Nota Promissória'
+        );
+        $this->itau[3] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->itau[4] = array(
+            'abr' => "ME",
+            'txt' => 'Mensalidade escolar'
+        );
+        $this->itau[5] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->itau[6] = array(
+            'abr' => "CT",
+            'txt' => 'Contrato'
+        );
+        $this->itau[7] = array(
+            'abr' => "CS",
+            'txt' => 'Cosseguros'
+        );
+        $this->itau[8] = array(
+            'abr' => "DS",
+            'txt' => 'Duplicata de Serviço'
+        );
+        $this->itau[9] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de Câmbio'
+        );
+        $this->itau[13] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de Débito'
+        );
+        $this->itau[15] = array(
+            'abr' => "DV",
+            'txt' => 'Documento de divida'
+        );
+        $this->itau[16] = array(
+            'abr' => "EC",
+            'txt' => 'Encargos condominiais'
+        );
+        $this->itau[17] = array(
+            'abr' => "CPS",
+            'txt' => 'Conta de prestação de serviço'
+        );
+        $this->itau[18] = array(
+            'abr' => "DBP",
+            'txt' => 'Boleto de Proposta'
+        );
+        $this->itau[99] = array(
+            'abr' => "DIV",
+            'txt' => 'Diversos'
+        );
+    }
+
+    /**
+     * Método setEspeciesBradesco()
+     * 
+     */
+    private function setEspeciesBradesco()
+    {
+        // Bradesco
+        $this->bradesco[1] = array(
+            'abr' => "DM",
+            'txt' => 'Duplicata'
+        );
+        $this->bradesco[2] = array(
+            'abr' => "NP",
+            'txt' => 'Nota PromissÃ³ria'
+        );
+        $this->bradesco[3] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->bradesco[4] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->bradesco[5] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->bradesco[6] = array(
+            'abr' => "DR",
+            'txt' => 'Duplicata Rural'
+        );
+        $this->bradesco[8] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de CÃ¢mbio'
+        );
+        $this->bradesco[9] = array(
+            'abr' => "WRT",
+            'txt' => 'Warrant'
+        );
+        $this->bradesco[10] = array(
+            'abr' => "CH",
+            'txt' => 'Cheque'
+        );
+        $this->bradesco[12] = array(
+            'abr' => "DS",
+            'txt' => 'Duplicata de ServiÃ£o'
+        );
+        $this->bradesco[13] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de DÃ©bito'
+        );
+        $this->bradesco[14] = array(
+            'abr' => "TM",
+            'txt' => 'Triplicata Mercantil'
+        );
+        $this->bradesco[15] = array(
+            'abr' => "TS",
+            'txt' => 'Triplicata de ServiÃ£o'
+        );
+        $this->bradesco[18] = array(
+            'abr' => "FAT",
+            'txt' => 'Fatura'
+        );
+        $this->bradesco[20] = array(
+            'abr' => "AP",
+            'txt' => 'ApÃ³lice de Seguros'
+        );
+        $this->bradesco[21] = array(
+            'abr' => "ME",
+            'txt' => 'Mensalidade escolar'
+        );
+        $this->bradesco[22] = array(
+            'abr' => "ME",
+            'txt' => 'Parcela de ConsÃ³rcio'
+        );
+        $this->bradesco[99] = array(
+            'abr' => "DIV",
+            'txt' => 'Outros'
+        );
+    }
+
+    /**
+     * Método setEspeciesBB()
+     * 
+     */
+    private function setEspeciesBB()
+    {
+        // BB
+        $this->bb[1] = array(
+            'abr' => "CH",
+            'txt' => 'Cheque'
+        );
+        $this->bb[2] = array(
+            'abr' => "DM",
+            'txt' => 'Duplicata Mercantil'
+        );
+        $this->bb[3] = array(
+            'abr' => "DMI",
+            'txt' => 'Mercantil p/ Indicação'
+        );
+        $this->bb[4] = array(
+            'abr' => "DS",
+            'txt' => 'Duplicata de Serviço'
+        );
+        $this->bb[5] = array(
+            'abr' => "DSI",
+            'txt' => 'Duplicata de Serviço p/ Indicação'
+        );
+        $this->bb[6] = array(
+            'abr' => "DR",
+            'txt' => 'Duplicata Rural'
+        );
+        $this->bb[7] = array(
+            'abr' => "LC",
+            'txt' => 'Letra de Câmbio'
+        );
+        $this->bb[8] = array(
+            'abr' => "NCC",
+            'txt' => 'Nota de Crédito Comercial'
+        );
+        $this->bb[9] = array(
+            'abr' => "NCE",
+            'txt' => 'Nota de Crédito a Exportação'
+        );
+        $this->bb[10] = array(
+            'abr' => "NCI",
+            'txt' => 'Nota de Crédito a Exportação'
+        );
+        $this->bb[11] = array(
+            'abr' => "NCR",
+            'txt' => 'Nota de Crédito Rural'
+        );
+        $this->bb[12] = array(
+            'abr' => "NP",
+            'txt' => 'Nota Promissória'
+        );
+        $this->bb[13] = array(
+            'abr' => "NPR",
+            'txt' => 'Nota Promissória Rural'
+        );
+        $this->bb[14] = array(
+            'abr' => "TM",
+            'txt' => 'Triplicata Mercantil'
+        );
+        $this->bb[15] = array(
+            'abr' => "TS",
+            'txt' => 'Triplicata de Serviço'
+        );
+        $this->bb[16] = array(
+            'abr' => "NS",
+            'txt' => 'Nota de Seguro'
+        );
+        $this->bb[17] = array(
+            'abr' => "RC",
+            'txt' => 'Recibo'
+        );
+        $this->bb[18] = array(
+            'abr' => "FAT",
+            'txt' => 'Fatura'
+        );
+        $this->bb[19] = array(
+            'abr' => "ND",
+            'txt' => 'Nota de Débito'
+        );
+    }
+
+    /**
+     * Método setEspeciesCEF()
+     * 
+     */
+    private function setEspeciesCEF()
     {
         // CEF
         $this->caixa[1] = array(
@@ -129,431 +682,5 @@ class Especie
             'abr' => "ND",
             'txt' => 'Nota de Débito'
         );
-        // BB
-        $this->bb[1] = array(
-            'abr' => "CH",
-            'txt' => 'Cheque'
-        );
-        $this->bb[2] = array(
-            'abr' => "DM",
-            'txt' => 'Duplicata Mercantil'
-        );
-        $this->bb[3] = array(
-            'abr' => "DMI",
-            'txt' => 'Mercantil p/ Indicação'
-        );
-        $this->bb[4] = array(
-            'abr' => "DS",
-            'txt' => 'Duplicata de Serviço'
-        );
-        $this->bb[5] = array(
-            'abr' => "DSI",
-            'txt' => 'Duplicata de Serviço p/ Indicação'
-        );
-        $this->bb[6] = array(
-            'abr' => "DR",
-            'txt' => 'Duplicata Rural'
-        );
-        $this->bb[7] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de Câmbio'
-        );
-        $this->bb[8] = array(
-            'abr' => "NCC",
-            'txt' => 'Nota de Crédito Comercial'
-        );
-        $this->bb[9] = array(
-            'abr' => "NCE",
-            'txt' => 'Nota de Crédito a Exportação'
-        );
-        $this->bb[10] = array(
-            'abr' => "NCI",
-            'txt' => 'Nota de Crédito a Exportação'
-        );
-        $this->bb[11] = array(
-            'abr' => "NCR",
-            'txt' => 'Nota de Crédito Rural'
-        );
-        $this->bb[12] = array(
-            'abr' => "NP",
-            'txt' => 'Nota Promissória'
-        );
-        $this->bb[13] = array(
-            'abr' => "NPR",
-            'txt' => 'Nota Promissória Rural'
-        );
-        $this->bb[14] = array(
-            'abr' => "TM",
-            'txt' => 'Triplicata Mercantil'
-        );
-        $this->bb[15] = array(
-            'abr' => "TS",
-            'txt' => 'Triplicata de Serviço'
-        );
-        $this->bb[16] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->bb[17] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->bb[18] = array(
-            'abr' => "FAT",
-            'txt' => 'Fatura'
-        );
-        $this->bb[19] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de Débito'
-        );
-        // Bradesco
-        $this->bradesco[1] = array(
-            'abr' => "DM",
-            'txt' => 'Duplicata'
-        );
-        $this->bradesco[2] = array(
-            'abr' => "NP",
-            'txt' => 'Nota PromissÃ³ria'
-        );
-        $this->bradesco[3] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->bradesco[4] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->bradesco[5] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->bradesco[6] = array(
-            'abr' => "DR",
-            'txt' => 'Duplicata Rural'
-        );
-        $this->bradesco[8] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de CÃ¢mbio'
-        );
-        $this->bradesco[9] = array(
-            'abr' => "WRT",
-            'txt' => 'Warrant'
-        );
-        $this->bradesco[10] = array(
-            'abr' => "CH",
-            'txt' => 'Cheque'
-        );
-        $this->bradesco[12] = array(
-            'abr' => "DS",
-            'txt' => 'Duplicata de ServiÃ£o'
-        );
-        $this->bradesco[13] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de DÃ©bito'
-        );
-        $this->bradesco[14] = array(
-            'abr' => "TM",
-            'txt' => 'Triplicata Mercantil'
-        );
-        $this->bradesco[15] = array(
-            'abr' => "TS",
-            'txt' => 'Triplicata de ServiÃ£o'
-        );
-        $this->bradesco[18] = array(
-            'abr' => "FAT",
-            'txt' => 'Fatura'
-        );
-        $this->bradesco[20] = array(
-            'abr' => "AP",
-            'txt' => 'ApÃ³lice de Seguros'
-        );
-        $this->bradesco[21] = array(
-            'abr' => "ME",
-            'txt' => 'Mensalidade escolar'
-        );
-        $this->bradesco[22] = array(
-            'abr' => "ME",
-            'txt' => 'Parcela de ConsÃ³rcio'
-        );
-        $this->bradesco[99] = array(
-            'abr' => "DIV",
-            'txt' => 'Outros'
-        );
-        // Itau
-        $this->itau[1] = array(
-            'abr' => "DM",
-            'txt' => 'Duplicata Mercantil'
-        );
-        $this->itau[2] = array(
-            'abr' => "NP",
-            'txt' => 'Nota Promissória'
-        );
-        $this->itau[3] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->itau[4] = array(
-            'abr' => "ME",
-            'txt' => 'Mensalidade escolar'
-        );
-        $this->itau[5] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->itau[6] = array(
-            'abr' => "CT",
-            'txt' => 'Contrato'
-        );
-        $this->itau[7] = array(
-            'abr' => "CS",
-            'txt' => 'Cosseguros'
-        );
-        $this->itau[8] = array(
-            'abr' => "DS",
-            'txt' => 'Duplicata de Serviço'
-        );
-        $this->itau[9] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de Câmbio'
-        );
-        $this->itau[13] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de Débito'
-        );
-        $this->itau[15] = array(
-            'abr' => "DV",
-            'txt' => 'Documento de divida'
-        );
-        $this->itau[16] = array(
-            'abr' => "EC",
-            'txt' => 'Encargos condominiais'
-        );
-        $this->itau[17] = array(
-            'abr' => "CPS",
-            'txt' => 'Conta de prestação de serviço'
-        );
-        $this->itau[18] = array(
-            'abr' => "DBP",
-            'txt' => 'Boleto de Proposta'
-        );
-        $this->itau[99] = array(
-            'abr' => "DIV",
-            'txt' => 'Diversos'
-        );
-        // SICOOB
-        $this->sicoob[1] = array(
-            'abr' => "DM",
-            'txt' => 'Duplicata Mercantil'
-        );
-        $this->sicoob[2] = array(
-            'abr' => "NP",
-            'txt' => 'Nota Promissória'
-        );
-        $this->sicoob[3] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->sicoob[5] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->sicoob[6] = array(
-            'abr' => "DR",
-            'txt' => 'Duplicata Rural'
-        );
-        $this->sicoob[8] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de Câmbio'
-        );
-        $this->sicoob[9] = array(
-            'abr' => "WRT",
-            'txt' => 'Warrant'
-        );
-        $this->sicoob[10] = array(
-            'abr' => "CH",
-            'txt' => 'Cheque'
-        );
-        $this->sicoob[12] = array(
-            'abr' => "DS",
-            'txt' => 'Duplicata de Serviço'
-        );
-        $this->sicoob[13] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de Débito'
-        );
-        $this->sicoob[14] = array(
-            'abr' => "TM",
-            'txt' => 'Triplicata Mercantil'
-        );
-        $this->sicoob[15] = array(
-            'abr' => "TS",
-            'txt' => 'Triplicata de Serviço'
-        );
-        $this->sicoob[18] = array(
-            'abr' => "FAT",
-            'txt' => 'Fatura'
-        );
-        $this->sicoob[20] = array(
-            'abr' => "AP",
-            'txt' => 'Apólice de Seguros'
-        );
-        $this->sicoob[21] = array(
-            'abr' => "ME",
-            'txt' => 'Mensalidade escolar'
-        );
-        $this->sicoob[22] = array(
-            'abr' => "ME",
-            'txt' => 'Parcela de ConsÃ³rcio'
-        );
-        $this->sicoob[99] = array(
-            'abr' => "DIV",
-            'txt' => 'Outros'
-        );
-        // SICRED
-        $this->sicredi['A'] = array(
-            'abr' => "DMI",
-            'txt' => 'Duplicata Mercantil por Indicação'
-        );
-        $this->sicredi['B'] = array(
-            'abr' => "DR",
-            'txt' => 'Duplicata Rural'
-        );
-        $this->sicredi['C'] = array(
-            'abr' => "NP",
-            'txt' => 'Nota Promissória'
-        );
-        $this->sicredi['D'] = array(
-            'abr' => "NR",
-            'txt' => 'Nota Promissória Rural'
-        );
-        $this->sicredi['E'] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->sicredi['G'] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->sicredi['H'] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de Câmbio'
-        );
-        $this->sicredi['I'] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de Débito'
-        );
-        $this->sicredi['J'] = array(
-            'abr' => "TS",
-            'txt' => 'Triplicata de Serviço'
-        );
-        $this->sicredi['K'] = array(
-            'abr' => "DIV",
-            'txt' => 'Outros'
-        );
-        // SANTANDER
-        $this->santander[1] = array(
-            'abr' => "DM",
-            'txt' => 'Duplicata Mercantil'
-        );
-        $this->santander[2] = array(
-            'abr' => "NP",
-            'txt' => 'Nota Promissória'
-        );
-        $this->santander[3] = array(
-            'abr' => "NS",
-            'txt' => 'Nota de Seguro'
-        );
-        $this->santander[5] = array(
-            'abr' => "RC",
-            'txt' => 'Recibo'
-        );
-        $this->santander[6] = array(
-            'abr' => "DR",
-            'txt' => 'Duplicata Rural'
-        );
-        $this->santander[8] = array(
-            'abr' => "LC",
-            'txt' => 'Letra de Câmbio'
-        );
-        $this->santander[9] = array(
-            'abr' => "WRT",
-            'txt' => 'Warrant'
-        );
-        $this->santander[10] = array(
-            'abr' => "CH",
-            'txt' => 'Cheque'
-        );
-        $this->santander[12] = array(
-            'abr' => "DS",
-            'txt' => 'Duplicata de Serviço'
-        );
-        $this->santander[13] = array(
-            'abr' => "ND",
-            'txt' => 'Nota de Débito'
-        );
-        $this->santander[14] = array(
-            'abr' => "TM",
-            'txt' => 'Triplicata Mercantil'
-        );
-        $this->santander[15] = array(
-            'abr' => "TS",
-            'txt' => 'Triplicata de Serviço'
-        );
-        $this->santander[18] = array(
-            'abr' => "FAT",
-            'txt' => 'Fatura'
-        );
-        $this->santander[20] = array(
-            'abr' => "AP",
-            'txt' => 'Apólice de Seguros'
-        );
-        $this->santander[21] = array(
-            'abr' => "ME",
-            'txt' => 'Mensalidade escolar'
-        );
-        $this->santander[22] = array(
-            'abr' => "ME",
-            'txt' => 'Parcela de ConsÃ³rcio'
-        );
-        $this->santander[99] = array(
-            'abr' => "DIV",
-            'txt' => 'Outros'
-        );
-        //
-        $this->res['104'] = $this->caixa;
-        $this->res['341'] = $this->itau;
-        $this->res['001'] = $this->bb;
-        $this->res['237'] = $this->bradesco;
-        $this->res['756'] = $this->sicoob;
-        $this->res['748'] = $this->sicredi;
-        $this->res['033'] = $this->santander;
-        $this->res['084'] = $this->bradesco;
-
-        $this->banco = $this->res[$banco];
-    }
-
-    /**
-     */
-    public function getAbr($especie)
-    {
-        return $this->banco[$especie]['abr'];
-    }
-
-    /**
-     */
-    public function getBanco()
-    {
-        return $this->banco;
-    }
-
-    /**
-     */
-    public function getCodigo($abr)
-    {
-        foreach ($this->banco as $key => $especie) {
-            if ($especie['abr'] == $abr) {
-                return $key;
-            }
-        }
     }
 }

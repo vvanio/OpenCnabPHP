@@ -25,15 +25,20 @@
  */
 namespace CnabPHP;
 
-use CnabPHP\RemessaAbstract;
-use CnabPHP;
-
 /**
+ * A classe Remessa define o nome do banco qual será utilizado para carregar a
+ * definição dos layouts personalizados
  */
 class Remessa extends RemessaAbstract
 {
 
     /**
+     * método __construct()
+     * Recebe os parametros
+     *
+     * @param string $banco
+     * @param string $layout
+     * @param array $data
      */
     public function __construct($banco, $layout, $data)
     {

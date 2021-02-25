@@ -25,52 +25,62 @@
  */
 namespace CnabPHP;
 
-use CnabPHP\RegistroAbstract;
-
 /**
  */
 abstract class RegistroRetAbstract extends RegistroAbstract
 {
 
+    /**
+     *
+     * @var string - armazena a linha do registro
+     */
     public $linha;
 
     /**
      * Método __construct()
      * instancia registro qualquer
      *
-     * @$data = array de dados para o registro
+     * @param string $linhaTxt
+     *            - dados para o registro
      */
     public function __construct($linhaTxt)
     {
-        // carrega o objeto correspondente
         $posicao = 0;
-
+        // atribui a linha do registro
         $this->linha = $linhaTxt;
-
+        // itera sobre o metadados
         foreach ($this->meta as $key => $value) {
+            // altera o formato do conteúdo conforme o tamanho e a precisão definida
             $valor = (isset($value['precision'])) ? substr($linhaTxt, $posicao, $value['tamanho'] + $value['precision']) : substr($linhaTxt, $posicao, $value['tamanho']);
-
+            // atribui o valor formatado na chave
             $this->$key = $valor;
-
+            // altera a posição considerada conforme o tamanho e a precisão definida
             $posicao += (isset($value['precision'])) ? $value['tamanho'] + $value['precision'] : $value['tamanho'];
         }
     }
 
     /**
      * método __set()
-     * executado sempre que uma propriedade for atribuÃ­da.
+     * Código executado sempre que for definido um valor para um atributo do registro.
+     *
+     * @param string $prop
+     *            - atributo a ser definido
+     * @param mixed $value
+     *            - valor a ser atribuído para o atributo
      */
     public function __set($prop, $value)
     {
-        // verifica se existe método set_<propriedade>
+        // verifica se existe método set_<atributo>
         if (method_exists($this, 'set_' . $prop)) {
-            // executa o Método set_<propriedade>
+            // executa o Método set_<atributo>
             call_user_func(array(
                 $this,
                 'set_' . $prop
             ), $value);
         } else {
+            // localiza o atributo no metadado
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
+            // atribui o valor para o atributo formatado conforme a definição do tipo
             switch ($metaData['tipo']) {
                 case 'decimal':
                     $inteiro = abs(substr($value, 0, $metaData['tamanho']));
@@ -108,33 +118,46 @@ abstract class RegistroRetAbstract extends RegistroAbstract
         }
     }
 
-    /**
+    /*
      * Método __get()
-     * executado sempre que uma propriedade for requerida
+     * Código executado sempre que um atributo do registro for obrigatório.
+     *
+     * @param string $prop
+     * - atributo a ser definido
+     *
+     * @return mixed
      */
     public function __get($prop)
     {
-        // verifica se existe Método get_<propriedade>
+        // verifica se existe Método get_<atributo>
         if (method_exists($this, 'get_' . $prop)) {
-            // executa o Método get_<propriedade>
+            // executa o Método get_<atributo>
             return call_user_func(array(
                 $this,
                 'get_' . $prop
             ));
         } else {
+            // retorna o valor deifnido para o atributo
             return $this->data[$prop];
         }
     }
 
-    /**
+    /*
      * Método ___get()
-     * metodo auxiliar para ser chamado para dentro de metodo get personalizado
+     * Código auxiliar para ser chamado para dentro de metodo get personalizado
+     *
+     * @param string $prop
+     * - atributo a ser definido
+     *
+     * @return string|NULL
      */
     public function ___get($prop)
     {
         // retorna o valor da propriedade
         if (isset($this->meta[$prop])) {
+            // localiza o atributo no metadado
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
+            // realiza o tratamento do dado conforme o tipo e retorna o dado formatado
             switch ($metaData['tipo']) {
                 case 'decimal':
                     return ($this->data[$prop]) ? number_format($this->data[$prop], $metaData['precision'], ',', '.') : '';
@@ -153,6 +176,10 @@ abstract class RegistroRetAbstract extends RegistroAbstract
     }
 
     /**
+     * Método get_meta()
+     * Metodo que retorna o metadado do registro
+     *
+     * @return array
      */
     public function get_meta()
     {
@@ -161,7 +188,9 @@ abstract class RegistroRetAbstract extends RegistroAbstract
 
     /**
      * Método getChilds()
-     * Metodo que retorna todos os filhos
+     * Metodo que retorna todos os filhos do registro
+     *
+     * @return array
      */
     public function getChilds()
     {
@@ -171,6 +200,10 @@ abstract class RegistroRetAbstract extends RegistroAbstract
     /**
      * Método getChild()
      * Metodo que retorna um filho
+     *
+     * @param number $index
+     *            - posição do filho que se deseja obter
+     * @return mixed
      */
     public function getChild($index = 0)
     {

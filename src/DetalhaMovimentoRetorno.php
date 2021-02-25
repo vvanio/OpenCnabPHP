@@ -30,11 +30,22 @@ namespace CnabPHP;
 class DetalhaMovimentoRetorno
 {
 
+    /**
+     * @var array - armazena as descrições dos movimentos processadas
+     */
     private $descricoes = array();
 
+    /**
+     * @var string - armazena o vbanco do arquivo de retorno
+     */
     private $banco;
 
     /**
+     * método __construct()
+     * Recebe os parametros
+     * 
+     * @param string $banco
+     * @param string $layout
      */
     public function __construct($banco, $layout)
     {
@@ -44,6 +55,10 @@ class DetalhaMovimentoRetorno
     }
 
     /**
+     * Método preparaBanco033_240()
+     * Define parâmetrso para tradução das mensagens para o Banco Sanrander no layoute 240
+     * 
+     * @return string[]
      */
     public function preparaBanco033_240()
     {
@@ -243,6 +258,10 @@ class DetalhaMovimentoRetorno
     }
 
     /**
+     * método getBanco()
+     * Retorna o banco do arquivo de retorno
+     * 
+     * @return string
      */
     public function getBanco()
     {
@@ -250,12 +269,18 @@ class DetalhaMovimentoRetorno
     }
 
     /**
+     * método getArrayTxtOcorrencias()
+     * Recebe os parametros
+     * 
+     * @param string $codigoMovimento
+     * @param string $srtCodDetalhes
+     * @return string[]|mixed[]
      */
     public function getArrayTxtOcorrencias($codigoMovimento, $srtCodDetalhes)
     {
         $arrayCodDetalhes = str_split($srtCodDetalhes, 2);
+        
         $arrayDescricoes = array();
-
         $arrayDescricoes[] = (empty($this->descricoes[$codigoMovimento])) ? "Código de Movimento n° {$codigoMovimento} não identificado!" : $this->descricoes[$codigoMovimento]['txt'];
 
         foreach ($arrayCodDetalhes as $key) {

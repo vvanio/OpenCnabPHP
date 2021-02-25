@@ -32,37 +32,64 @@ use Exception;
 abstract class RetornoAbstract
 {
 
-    // armazena o objeto registro 0 do arquivo
+    /**
+     *
+     * @var RegistroRetAbstract - armazena o objeto registro 0 do arquivo
+     */
     // public $hearder;
 
-    // armazena os registros filhos da classe remessa
+    /**
+     *
+     * @var array - armazena os registros filhos da classe remessa
+     */
     private $children = array();
 
-    // sera atribuido o nome do banco que tambem é o nome da pasta que contem os layouts
+    /**
+     *
+     * @var string - sera atribuido o nome do banco que tambem é o nome da pasta que contem os layouts
+     */
     public static $banco;
 
-    // recebera o nome do layout na instanciação
+    /**
+     *
+     * @var string - recebera o nome do layout na instanciação
+     */
     public static $layout;
 
-    // contador de lotes
+    /**
+     *
+     * @var integer - contador de lotes
+     */
     public static $loteCounter = 1;
 
-    // mantem os dados passados em $data na instanciação
+    /**
+     *
+     * @var integer - mantem os dados passados em $data na instanciação
+     */
     public static $lines;
 
-    // contador de linhas
+    /**
+     *
+     * @var integer - contador de linhas
+     */
     public static $linesCounter = 0;
 
-    // durante a geração do txt de retorno se tornara um array com as linhas do arquvio
+    /**
+     *
+     * @var array - linhas do arquvio durante a geração do txt de retorno
+     */
     // public static $retorno = array();
 
     /**
      * método __construct()
      * Recebe os parametros
      *
-     * @$banco = nome do banco no momento so Caixa
-     * @$layout = nome do layout no momento so Cnab240_SIGCB
-     * @$data = um array contendo os dados nessesarios para o arquvio
+     * @param string $banco
+     *            - nome do banco
+     * @param string $layout
+     *            - nome do layout
+     * @param array $data
+     *            - dados nessesarios para criação do arquvio
      */
     public function __construct($conteudo)
     {
@@ -75,11 +102,13 @@ abstract class RetornoAbstract
         $layout_versao = null;
 
         if ($length == 240 || $length == 241) {
+            // TODO: verificar porque não é usado
             $bytes = 240;
             $layout_versao = substr($lines[0], 163, 3);
             $codigo_banco = substr($lines[0], 0, 3);
             $codigo_tipo = substr($lines[0], 142, 1);
         } elseif ($length == 400 || $length == 401) {
+            // TODO: verificar porque não é usado
             $bytes = 400;
             $layout_versao = '400';
             $codigo_banco = substr($lines[0], 76, 3);
@@ -90,6 +119,7 @@ abstract class RetornoAbstract
         if ($codigo_tipo == '1') {
             throw new Exception("Esse é um arquivo de remessa, nao pode ser processado como um retorno bancário.");
         }
+
         self::$banco = $codigo_banco;
         self::$layout = "L" . $layout_versao;
         $class = 'CnabPHP\resources\\B' . self::$banco . '\retorno\\' . self::$layout . '\Registro0';
@@ -106,7 +136,8 @@ abstract class RetornoAbstract
      * Método changeLayout()
      * Recebe os parametros
      *
-     * @$newLayout = altera o layout do lote , servira para enviar lotes de layouts diferentes no mesmo arquvio //(ALERTA) nao testado
+     * @$newLayout = altera o layout do lote, servira para enviar lotes de layouts diferentes no mesmo arquvio
+     *   //(ALERTA) nao testado
      */
     public function changeLayout($newLayout)
     {

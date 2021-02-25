@@ -25,7 +25,6 @@
  */
 namespace CnabPHP;
 
-use CnabPHP\RegistroAbstract;
 use Exception;
 
 /**
@@ -33,20 +32,27 @@ use Exception;
 abstract class RegistroRemAbstract extends RegistroAbstract
 {
 
+    /**
+     * @var array $entryData
+     */
     protected $entryData;
 
     /**
      * Método __construct()
-     * instancia registro qualquer
+     * Responsável pela criação de uma instancia de registro qualquer.
      *
-     * @$data = array de dados para o registro
+     * @param array $data
+     *            - dados para criação do registro
      */
     public function __construct($data = null)
     {
-        if ($data) { // se o ID for informado
-                     // carrega o objeto correspondente
+        // se o ID for informado
+        if ($data) {
+            // carrega o objeto correspondente
             $this->entryData = $data;
-            foreach ($this->meta as $key => $value) {
+            // atribui valor defaulto para os atributos não especificados
+            // foreach ($this->meta as $key => $value) { tratar warning $value is never used
+            foreach (array_keys($this->meta) as $key) {
                 $this->$key = (isset($data[$key])) ? $data[$key] : $this->meta[$key]['default'];
             }
         }
@@ -54,56 +60,82 @@ abstract class RegistroRemAbstract extends RegistroAbstract
 
     /**
      * Método __set()
-     * executado sempre que uma propriedade for atribuída.
+     * Código executado sempre que for definido um valor para um atributo do registro.
+     *
+     * @param string $prop
+     *            - atributo a ser definido
+     * @param mixed $value
+     *            - valor a ser atribuído para o atributo
      */
     public function __set($prop, $value)
     {
-        // verifica se existe Método set_<propriedade>
+        // verifica se existe Método set_<atributo>
         if (method_exists($this, 'set_' . $prop)) {
-            // executa o Método set_<propriedade>
+            // executa o Método set_<atributo>
             call_user_func(array(
                 $this,
                 'set_' . $prop
             ), $value);
         } else {
+            // localiza o atributo no metadado
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
+            // se não foi definido nenhum valor
             if (($value == "" || $value === null) && $metaData['default'] != "") {
+                // atribui o valor default para o atributo
                 $this->data[$prop] = $metaData['default'];
             } else {
-                // atribui o valor da propriedade
+                // atribui o valor enviado para o atributo
                 $this->data[$prop] = $value;
-            }
+            }/**
+            * @return string
+            */
+            
         }
     }
 
     /**
      * Método __get()
-     * executado sempre que uma propriedade for requerida
+     * Código executado sempre que um atributo do registro for obrigatório.
+     *
+     * @param string $prop
+     *            - atributo a ser definido
      */
     public function __get($prop)
     {
-        // verifica se existe Método get_<propriedade>
+        // verifica se existe Método get_<atributo>
         if (method_exists($this, 'get_' . $prop)) {
-            // executa o Método get_<propriedade>
+            // executa o Método get_<atributo>
             return call_user_func(array(
                 $this,
                 'get_' . $prop
             ));
         } else {
+            // retorna uma chamada get personalizada
             return $this->___get($prop);
         }
     }
 
     /**
      * Método ___get()
-     * metodo auxiliar para ser chamado para dentro de metodo get personalizado
+     * Código auxiliar para ser chamado para dentro de metodo get personalizado
+     *
+     * @param string $prop
+     *            - atributo a ser definido
+     *            
+     * @throws Exception
+     * @throws \ErrorException
+     * 
+     * @return string|NULL
      */
     public function ___get($prop)
     {
         // retorna o valor da propriedade
         if (isset($this->meta[$prop])) {
+            // localiza o atributo no metadado
             $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
+            // atribui valor default caso não tenha nenum dado
             $this->data[$prop] = ! isset($this->data[$prop]) || $this->data[$prop] == '' ? $metaData['default'] : $this->data[$prop];
+            // caso o campo seja obrigatório e tenha valor nulo, lança a execessão apropriada
             if ($metaData['required'] == true && ($this->data[$prop] == '' || ! isset($this->data[$prop]))) {
                 if (isset($this->data['nosso_numero'])) {
                     throw new Exception('Campo faltante ou com valor nulo:' . $prop . " Boleto Numero:" . $this->data['nosso_numero']);
@@ -111,10 +143,11 @@ abstract class RegistroRemAbstract extends RegistroAbstract
                     throw new Exception('Campo faltante ou com valor nulo:' . $prop);
                 }
             }
+            // determina a função de tratamento de erro a ser utilizada
             set_error_handler(function ($severity, $message, $file, $line, $errcontext) {
                 throw new \ErrorException(json_encode($errcontext) . "->" . $message, $severity, $severity, $file, $line);
             });
-
+            // realiza o tratamento do dado conforme o tipo e retorna o dado formatado
             switch ($metaData['tipo']) {
                 case 'decimal':
                     $retorno = (($this->data[$prop] && trim($this->data[$prop]) !== "" ? number_format($this->data[$prop], $metaData['precision'], '', '') : (isset($metaData['default']) ? $metaData['default'] : '')));
@@ -140,12 +173,16 @@ abstract class RegistroRemAbstract extends RegistroAbstract
                 default:
                     return null;
             }
-
+            // restaura a função de tratamento previamente utilizada
             restore_error_handler();
         }
     }
 
     /**
+     * Método getFileName()
+     * Código responsável pela formatação do nome do arquivo .
+     * 
+     * @return string
      */
     public function getFileName()
     {
